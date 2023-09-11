@@ -1,0 +1,67 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="cay.master.cs" Inherits="Site_Activos_cay" %>
+
+<%@ Register Src="../../Ctrl/Menu/menu.ascx" TagName="menu" TagPrefix="uc1" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server" profile="http://www.w3.org/2005/10/profile">
+    <title></title>
+    <style type="text/css">
+        html, body, form {
+            margin: 0px;
+            margin-right:28px;
+            padding: 0px;
+        }
+    </style>
+     <!-- jQuery library -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <link href="../../App_Themes/Theme1/css.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/png" href="../../Img/icoc.png" />
+    <link rel="Stylesheet" type="text/css" href="../../Bootstrap/css/bootstrap.min.css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <script type="text/javascript" src="../../Bootstrap/js/bootstrap.min.js"></script>
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server"
+            ScriptMode="Release" EnableScriptGlobalization="True">
+        </telerik:RadScriptManager>
+        <telerik:RadSkinManager ID="RadSkinManager1" runat="server" Skin="Vista">
+        </telerik:RadSkinManager>
+        <table cellspacing="0" class="style1">
+            <tr>
+                <td class="atl" height="38" width="10">&nbsp;</td>
+                <td class="atl" height="38">
+                    <table cellspacing="0" class="style1">
+                        <tr>
+                            <td>
+                                <a href='<%= ResolveUrl("~/Site/Principal.aspx")%>'>
+                                    <img alt="" height="30" src='<%= ResolveUrl("~/Img/logo.png")%>'
+                                        width="177" class="ima" /></a></td>
+                            <td class="aabr">
+                                <asp:Label ID="lblempresa" runat="server" Font-Names="Century Gothic"></asp:Label>
+                                &nbsp;|
+                            <asp:LoginName ID="LoginName1" runat="server" Font-Names="Century Gothic" />
+                                &nbsp;|
+                            <asp:LoginStatus ID="LoginStatus2" runat="server" Font-Names="Century Gothic" />
+                            </td>
+                            <td class="aabr" width="10">&nbsp;</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td height="30" class="aatl">&nbsp;</td>
+                <td height="30" class="aatl">
+                    <uc1:menu ID="menu1" runat="server" />
+                </td>
+            </tr>
+        </table>
+        <asp:ContentPlaceHolder ID="cph1" runat="server">
+        </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

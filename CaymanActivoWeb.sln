@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CaymanActivoWeb", "CaymanActivoWeb\", "{3C6FDEC6-2206-4B6A-A100-F32F42B4D6B0}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.2"
+		ProjectReferences = "{134BE381-9879-410D-AD59-AC208D07D0F7}|Logica.dll;{9BF6644C-760B-4821-A925-CF527586EFFB}|Datos.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/caymanactivo"
+		Debug.AspNetCompiler.PhysicalPath = "CaymanActivoWeb\"
+		Debug.AspNetCompiler.TargetPath = "..\..\caymanactivo\"
+		Debug.AspNetCompiler.Updateable = "false"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/caymanactivo"
+		Release.AspNetCompiler.PhysicalPath = "CaymanActivoWeb\"
+		Release.AspNetCompiler.TargetPath = "..\..\caymanactivo\"
+		Release.AspNetCompiler.Updateable = "false"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "12691"
+		SlnRelativePath = "CaymanActivoWeb\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datos", "Datos\Datos.csproj", "{9BF6644C-760B-4821-A925-CF527586EFFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logica", "Logica\Logica.csproj", "{134BE381-9879-410D-AD59-AC208D07D0F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3D394C38-6B84-42AF-8377-720C4953E7FA}"
+	ProjectSection(SolutionItems) = preProject
+		WebEssentials2015-Settings.json = WebEssentials2015-Settings.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C6FDEC6-2206-4B6A-A100-F32F42B4D6B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C6FDEC6-2206-4B6A-A100-F32F42B4D6B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C6FDEC6-2206-4B6A-A100-F32F42B4D6B0}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C6FDEC6-2206-4B6A-A100-F32F42B4D6B0}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{9BF6644C-760B-4821-A925-CF527586EFFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BF6644C-760B-4821-A925-CF527586EFFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BF6644C-760B-4821-A925-CF527586EFFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BF6644C-760B-4821-A925-CF527586EFFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{134BE381-9879-410D-AD59-AC208D07D0F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{134BE381-9879-410D-AD59-AC208D07D0F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{134BE381-9879-410D-AD59-AC208D07D0F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{134BE381-9879-410D-AD59-AC208D07D0F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B916ACAD-FF77-4E42-BF78-C38B02407711}
+	EndGlobalSection
+EndGlobal

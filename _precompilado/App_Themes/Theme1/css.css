@@ -1,0 +1,316 @@
+﻿body
+{
+	background-image: url(../../Img/wp2.jpg);
+	background-attachment: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+/* ALINEACION */
+.aabl
+{
+	vertical-align: bottom;
+	text-align: left;
+}
+.aabc
+{
+	vertical-align: bottom;
+	text-align: center;
+}
+.aabr
+{
+	vertical-align: bottom;
+	text-align: right;
+}
+
+.aacl
+{
+	vertical-align: middle;
+	text-align: left;
+}
+.aacc
+{
+	vertical-align: middle;
+	text-align: center;
+}
+.aacr
+{
+	vertical-align: middle;
+	text-align: right;
+}
+
+.aatl
+{
+	vertical-align: top;
+	text-align: left;
+}
+.aatc
+{
+	vertical-align: top;
+	text-align: center;
+}
+.aatr
+{
+	vertical-align: top;
+	text-align: right;
+}
+
+/* style */
+
+.aabrpan
+{
+	vertical-align: bottom;
+	text-align: right;
+	z-index: 100;
+	background-image: url('../../Img/cmd1.gif');
+}
+
+.style1
+{
+	 width: 100%;
+}
+
+.pan
+{
+	background-color: #FFFFFF;
+}
+.panmar
+{
+	margin: 6px 10px 7px 10px;
+	width: 98%;
+}
+.panmar2
+{
+	margin: 7px 10px 7px 10px;
+	width: 95%;
+}
+.panmar3
+{    
+	margin-top: 4px;
+	margin-right: 10px;
+}
+.divv
+{
+	margin: 6px 10px 6px 10px;
+}
+.immarg
+{
+	border: 3px solid #000000;
+	margin-right: 10px;
+	margin-left: 4px;
+}
+
+.immarg2
+{
+	margin: 3px;
+}
+
+.txtdd
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	height: 21px;
+}
+.ba1
+{
+	background-image: url('../../Img/a1.png');
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.ba2
+{
+	background-image: url('../../Img/a2.png');
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.ba3
+{
+	background-image: url('../../Img/a3.png');
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.ba4
+{
+	background-image: url('../../Img/a4.png');
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.ba5
+{
+	background-image: url('../../Img/a5.png');
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.ba6
+{
+	background-image: url('../../Img/a6.png');
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.ba7
+{
+	background-image: url('../../Img/a7.png');
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.ba8
+{
+	background-image: url('../../Img/a8.png');
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.ba9
+{
+	background-image: url('../../Img/a9.png');
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.ba10
+{
+	background-image: url('../../Img/a10.png');
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.ba11
+{
+	background-image: url('../../Img/a11.png');
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.ba12
+{
+	background-image: url('../../Img/b1.png');
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+.mr
+{
+	margin-right: 8px;
+}
+.ima
+{
+	border: none;
+	background-image: none;
+	background-color: transparent;
+}
+.bor
+{
+	margin: 20px;
+}
+.bor2
+{
+	margin: 16px;
+}
+.modalBackground
+{
+	background-color: #3753fc;
+	filter: alpha(opacity=30);
+	opacity: 0.3;
+}
+
+/* link */
+
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+a:active {
+	text-decoration: none;
+}
+a img
+{   
+border: none; 
+} 
+
+
+.zindex
+{
+	z-index: -1;
+}
+	
+.mess
+{
+	color: #FFFFFF;
+	height: 26px;
+	background-color: #214263;
+	vertical-align: middle;
+	text-align: left;
+	font-weight: bold;
+}
+
+/*GRID MAKEOVER*/
+
+.mGrid
+{
+	width: 100%;
+	background-color: #FFFFFF;
+	margin: 5px 0 10px 0;
+	border: solid 1px #8BBDDE;
+	border-collapse: collapse;
+	font-family: 'Arial Narrow';
+	font-size: 13px;
+}
+.mGrid td
+{
+	padding: 2px;
+	border: solid 1px #8BBDDE;
+	color: #333333;
+}
+.mGrid th
+{
+	padding: 4px 2px;
+	color: #000000;
+	background: url(grd_head.png) repeat-x top;
+	border-left: solid 1px #8BBDDE;
+	background-color: #A6D9F4;
+	font-weight: normal;
+}
+/*
+.mGrid .alt
+{
+	background: #F5F7FB url(grd_alt.png) repeat-x;
+}*/
+.mGrid .pgr
+{
+	background: #E5F4FD url(grd_pgr.png) repeat-x top;
+}
+
+.mGrid .pgr table 
+{ 
+	margin: 5px 0;
+}
+.mGrid .pgr td
+{
+	border-width: 0;
+	padding: 0 6px;
+	border-left: solid 1px #666;
+	color: #666666;
+	line-height: 12px;
+	border-left-color: #000000;
+}   
+.mGrid .pgr a
+{
+	color: #000000;
+	text-decoration: none;
+}
+.mGrid .pgr a:hover 
+{ 
+	color: #000; 
+	text-decoration: none; 
+}
+
+/*expandir radgrid*/
+.MyGridClass .rgDataDiv
+{
+	height: auto !important;    
+}
+	
+.panmar6
+{
+	margin: 6px 10px 7px 10px;
+}

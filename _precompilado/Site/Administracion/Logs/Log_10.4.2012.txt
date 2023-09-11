@@ -1,0 +1,12 @@
+10/04/2012 13:49:34 ==> DepreNiif
+ Void ibbus1_Click(System.Object, System.Web.UI.ImageClickEventArgs)
+ Usuario:cayman<< Subproceso anulado.
+
+System.Web.UI.WebControls.ImageButton
+ Void OnClick(System.Web.UI.ImageClickEventArgs)
+System.Web.UI.WebControls.ImageButton
+ Void RaisePostBackEvent(System.String)
+System.Web.UI.WebControls.ImageButton
+ Void System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(System.String)
+
+

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+
+   <siteMapNode url="" title=""  roles="*" >
+
+        <siteMapNode title="Gestión de Activos" roles="*" image="~/Img/a.png" >
+          
+          <siteMapNode url="~/Site/Impresion/ImprimirCod.aspx" title="Imprimir Código de Barras"/>
+
+            <siteMapNode url="~/Site/Activos/Nuevo.aspx" title="Ingresar Items"/>
+            <siteMapNode url="~/Site/Activos/Modificar.aspx" title="Buscar y Modificar Items"/>            
+            
+          <siteMapNode title="Gestión de Catálogos" roles="*" >
+            
+            <siteMapNode url="~/Site/ZGru/ZGrupos.aspx" title="Grupo, Subgrupo y Descripción"/>
+            <siteMapNode url="~/Site/ZGru/ZGruposCar.aspx" title="Característica por Grupo"/>
+            <siteMapNode url="~/Site/ZUni/ZUnidad.aspx" title="Unidad de Características"/>
+            <siteMapNode url="~/Site/ZUge/ZUge.aspx" title="Ubicación Geográfica y Piso/Nivel"/>
+            <siteMapNode url="~/Site/ZUor/ZUor.aspx" title="Centro de Costo y Ubicación Orgánica"/>
+            <siteMapNode url="~/Site/ZCus/ZCar.aspx" title="Cargo"/>
+            <siteMapNode url="~/Site/ZCus/ZCus.aspx" title="Custodio por Ubicación"/>
+            <siteMapNode url="~/Site/ZMar/ZMarca.aspx" title="Marca y Modelo"/>
+            <siteMapNode url="~/Site/ZMar/ZMarcaFast.aspx" title="Marca y Modelo (fast)"/>
+            <siteMapNode url="~/Site/ZCol/ZColor.aspx" title="Color"/>
+            <siteMapNode url="~/Site/ZEst/ZEstrucomp.aspx" title="Estructura y Componente"/>
+            <siteMapNode url="~/Site/ZPro/ZProveedor.aspx" title="Proveedor"/>
+
+          </siteMapNode>
+
+          <siteMapNode title="Reportes" roles="*" >
+            
+            <siteMapNode url="~/Site/Activos/RepoCod.aspx" title="Reporte de Codificación"/>
+            <siteMapNode url="~/Site/Activos/RepoPer.aspx" title="Reporte Personalizado"/>
+            <siteMapNode url="~/Site/Activos/Reporte2.aspx" title="Reporte Global"/>
+            <siteMapNode url="~/Site/Activos/ReportePadreHijo.aspx" title="Reporte Unidad Funcional - Componente"/>
+
+            <siteMapNode title="Reporte Custodios" roles="*" >
+              
+              <siteMapNode url="~/Site/Activos/RepoCus.aspx"  title="Reporte de Items por Custodio"/>
+              <siteMapNode url="~/Site/Activos/ExplorerPdf.aspx"  title="PDF's Generados"/>
+
+            </siteMapNode>       
+          
+          </siteMapNode>
+
+          <siteMapNode url="~/Site/Activos/Baja.aspx" title="Baja de Items"/>
+        
+        </siteMapNode>
+
+        <siteMapNode title="Traslados" roles="*" >
+
+            <siteMapNode url="~/Site/Traslados/TrasladosInd.aspx" title="Traslados Individuales"/>
+            <siteMapNode url="~/Site/Traslados/TrasladosMas.aspx" title="Traslados Masivos"/>
+
+          <siteMapNode title="Reportes" roles="*" >
+            
+            <siteMapNode url="~/Site/Traslados/ReporteTras.aspx" title="Reporte de Traslados"/>
+            <siteMapNode url="~/Site/Traslados/ExplorerPdf.aspx" title="Actas Generadas"/>
+          
+          </siteMapNode>
+          
+        </siteMapNode>
+
+        <siteMapNode title="Inventarios" roles="*" > 
+
+            <siteMapNode url="~/Site/Inventarios/AsignarPpc.aspx" title="Filtrar y Asignar Items"/>
+
+        </siteMapNode>
+
+        <siteMapNode title="Mantenimiento" roles="*" >
+
+            <siteMapNode url="~/Site/Mantenimiento/ReporteMan.aspx" title="Mantenimientos Realizados"/>
+
+        </siteMapNode>       
+
+        <siteMapNode title="Depreciación" roles="*" >
+         
+          <siteMapNode url="~/Site/Depreciacion/DepreNiif.aspx" title="Generar Depreciación NIIF"/>
+          <siteMapNode url="~/Site/Depreciacion/ReporteDepreNiif.aspx" title="Consultar Depreciación NIIF Generada"/>
+          <siteMapNode url="~/Site/Depreciacion/ReporteDepreNiifCC.aspx" title="Reporte Cuentas Depreciación NIIF"/>
+          <siteMapNode url="~/Site/Depreciacion/DepreTribu.aspx" title="Generar Depreciación Tributaria"/>
+          <siteMapNode url="~/Site/Depreciacion/ReporteDepreTribu.aspx" title="Consultar Depreciación Tributaria Generada"/>
+                   
+        </siteMapNode>
+
+        <siteMapNode title="Administración" roles="*" >
+
+          <siteMapNode title="Sistema Web" roles="*" >
+            
+            <siteMapNode url="~/Site/Administracion/Usuarios.aspx" title="Crear Usuarios del Sistema"/>
+            <siteMapNode url="~/Site/Administracion/RolesUsuarios.aspx" title="Gestionar Roles por Usuario"/>
+            <siteMapNode url="~/Site/Administracion/CInvalidas.aspx" title="Desbloquear Usuarios"/>
+            <siteMapNode url="~/Site/Administracion/ResetClave.aspx" title="Cambiar Contraseña"/>
+            <siteMapNode url="~/Site/Administracion/EliminarUsuarios.aspx" title="Eliminar Usuarios del Sistema"/>
+            
+          </siteMapNode>
+
+          <siteMapNode title="PocketPc" roles="*" >
+
+            <siteMapNode url="~/Site/Administracion/ZPpc.aspx" title="Gestionar PocketPc's"/>
+            <siteMapNode url="~/Site/Administracion/ZUsu.aspx" title="Gestionar Usuarios PocketPc"/>
+
+          </siteMapNode>
+          
+          <siteMapNode url="~/Site/Administracion/BackupBdd.aspx" title="Respaldar Base de Datos"/>
+          <siteMapNode url="~/Site/Administracion/ExplorerPdf.aspx" title="Logs del Sistema"/>
+        </siteMapNode>
+
+    </siteMapNode>
+    
+</siteMap>

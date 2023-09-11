@@ -1,0 +1,30 @@
+C:\Users\Alejandro\Desktop\COOPROGRESO\Logica\bin\Debug\Logica.dll
+C:\Users\Alejandro\Desktop\COOPROGRESO\Logica\bin\Debug\Logica.pdb
+C:\Users\Alejandro\Desktop\COOPROGRESO\Logica\bin\Debug\Datos.dll
+C:\Users\Alejandro\Desktop\COOPROGRESO\Logica\bin\Debug\itextsharp.dll
+C:\Users\Alejandro\Desktop\COOPROGRESO\Logica\bin\Debug\Datos.pdb
+C:\Users\Alejandro\Desktop\COOPROGRESO\Logica\obj\Debug\Logica.csproj.AssemblyReference.cache
+C:\Users\Alejandro\Desktop\COOPROGRESO\Logica\obj\Debug\Logica.csproj.CoreCompileInputs.cache
+C:\Users\Alejandro\Desktop\COOPROGRESO\Logica\obj\Debug\Logica.csproj.CopyComplete
+C:\Users\Alejandro\Desktop\COOPROGRESO\Logica\obj\Debug\Logica.dll
+C:\Users\Alejandro\Desktop\COOPROGRESO\Logica\obj\Debug\Logica.pdb
+C:\Users\Alejandro\Desktop\ngpower\NG POWER\Logica\bin\Debug\Logica.dll
+C:\Users\Alejandro\Desktop\ngpower\NG POWER\Logica\bin\Debug\Logica.pdb
+C:\Users\Alejandro\Desktop\ngpower\NG POWER\Logica\bin\Debug\Datos.dll
+C:\Users\Alejandro\Desktop\ngpower\NG POWER\Logica\bin\Debug\itextsharp.dll
+C:\Users\Alejandro\Desktop\ngpower\NG POWER\Logica\bin\Debug\Datos.pdb
+C:\Users\Alejandro\Desktop\ngpower\NG POWER\Logica\obj\Debug\Logica.csproj.AssemblyReference.cache
+C:\Users\Alejandro\Desktop\ngpower\NG POWER\Logica\obj\Debug\Logica.csproj.CoreCompileInputs.cache
+C:\Users\Alejandro\Desktop\ngpower\NG POWER\Logica\obj\Debug\Logica.csproj.CopyComplete
+C:\Users\Alejandro\Desktop\ngpower\NG POWER\Logica\obj\Debug\Logica.dll
+C:\Users\Alejandro\Desktop\ngpower\NG POWER\Logica\obj\Debug\Logica.pdb
+C:\Users\Alejandro\Desktop\Energy Power ALIANZA DEL VALLE\Energy power\Logica\bin\Debug\Logica.dll
+C:\Users\Alejandro\Desktop\Energy Power ALIANZA DEL VALLE\Energy power\Logica\bin\Debug\Logica.pdb
+C:\Users\Alejandro\Desktop\Energy Power ALIANZA DEL VALLE\Energy power\Logica\bin\Debug\Datos.dll
+C:\Users\Alejandro\Desktop\Energy Power ALIANZA DEL VALLE\Energy power\Logica\bin\Debug\itextsharp.dll
+C:\Users\Alejandro\Desktop\Energy Power ALIANZA DEL VALLE\Energy power\Logica\bin\Debug\Datos.pdb
+C:\Users\Alejandro\Desktop\Energy Power ALIANZA DEL VALLE\Energy power\Logica\obj\Debug\Logica.csproj.AssemblyReference.cache
+C:\Users\Alejandro\Desktop\Energy Power ALIANZA DEL VALLE\Energy power\Logica\obj\Debug\Logica.csproj.CoreCompileInputs.cache
+C:\Users\Alejandro\Desktop\Energy Power ALIANZA DEL VALLE\Energy power\Logica\obj\Debug\Logica.csproj.CopyComplete
+C:\Users\Alejandro\Desktop\Energy Power ALIANZA DEL VALLE\Energy power\Logica\obj\Debug\Logica.dll
+C:\Users\Alejandro\Desktop\Energy Power ALIANZA DEL VALLE\Energy power\Logica\obj\Debug\Logica.pdb

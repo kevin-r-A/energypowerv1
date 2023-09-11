@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="17e0bab16e594749adcee82718107898" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.ACRESERVA" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.ACTA" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.ACTIVO" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.ANIO" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.aspnet_Applications" Width="1.5" PointX="10.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.aspnet_Membership" Width="1.5" PointX="16" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.aspnet_Paths" Width="1.5" PointX="13" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.aspnet_PersonalizationAllUsers" Width="1.5" PointX="15.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.aspnet_PersonalizationPerUser" Width="1.5" PointX="15.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.aspnet_Profile" Width="1.5" PointX="20.5" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.aspnet_Roles" Width="1.5" PointX="13" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.aspnet_SchemaVersions" Width="1.5" PointX="9.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.aspnet_Users" Width="1.5" PointX="18.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.aspnet_WebEvent_Events" Width="1.5" PointX="7.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.CARACTERISTICA" Width="1.5" PointX="8.25" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.CARGO" Width="1.5" PointX="1.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.CCAR" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.CFAMILIA" Width="1.5" PointX="3" PointY="36.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.CODIGO" Width="1.5" PointX="9.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.CODIGOMASIVO" Width="1.5" PointX="11.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.COLOR" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.CUSTODIO" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.DEPRECIACION" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.DEPRECIACIONSRI" Width="2.25" PointX="5.125" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.DGENERADA" Width="1.5" PointX="9.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.DGENERADASRI" Width="1.5" PointX="15.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.EMPRESA" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.ESTADO" Width="1.5" PointX="0.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.ESTRUCOMP" Width="1.5" PointX="0.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.GRUPO" Width="1.5" PointX="0.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.GRUPOSRI" Width="1.5" PointX="3" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.HCODIGO" Width="1.5" PointX="17.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.HUCUSTODIO" Width="1.5" PointX="17.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.INVALIDCREDENTIALSLOG" Width="1.5" PointX="17.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.MACTIVO" Width="1.5" PointX="19.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.MARCA" Width="1.5" PointX="0.75" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.MODELO" Width="1.5" PointX="0.75" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.MOVIMIENTO_RFID" Width="1.5" PointX="5.25" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.PAIS" Width="1.5" PointX="3.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.PARAMETROS" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.POTENCIA_ANTENA" Width="1.5" PointX="19.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.PPC" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.PROVEEDOR" Width="1.5" PointX="6" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.REPORTE" Width="1.5" PointX="19.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.ROLPPC" Width="1.5" PointX="3.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.TIPOMAN" Width="1.5" PointX="6" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.UGEOGRAFICA" Width="1.5" PointX="0.75" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.UNIDAD" Width="1.5" PointX="6" PointY="34.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.UORGANICA" Width="1.5" PointX="0.75" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.USUPPC" Width="1.5" PointX="6" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.XCUOR" Width="1.5" PointX="8" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.HFOTO" Width="1.5" PointX="10.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.Vista_Activos" Width="1.5" PointX="12.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.vw_aspnet_Applications" Width="1.5" PointX="14.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.vw_aspnet_MembershipUsers" Width="1.5" PointX="19.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.vw_aspnet_Profiles" Width="1.5" PointX="16.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.vw_aspnet_Roles" Width="1.5" PointX="21.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.vw_aspnet_Users" Width="1.5" PointX="21.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.vw_aspnet_UsersInRoles" Width="1.5" PointX="20.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.vw_aspnet_WebPartState_Paths" Width="1.5" PointX="21.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.vw_aspnet_WebPartState_Shared" Width="1.5" PointX="21.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.vw_aspnet_WebPartState_User" Width="1.5" PointX="21.75" PointY="21.75" IsExpanded="true" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_COLOR" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_CUSTODIO" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_ECO1" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_ECO2" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_EMPRESA" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_ESTADO" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_ESTADO1" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_GRUPO" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_GRUPO2" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_GRUPO3" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_MARCA" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_MODELO" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_PROVEEDOR" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_UGEOGRAFICA" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_UGEOGRAFICA1" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_UGEOGRAFICA2" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_UGEOGRAFICA3" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_UORGANICA2" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_UORGANICA3" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_CARACTERISTICA_ACTIVO1" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_DEPRECIACION_ACTIVO" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_DEPRECIACIONSRI_ACTIVO" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_MOVIMIENTO_RFID_ACTIVO" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK__aspnet_Me__Appli__3B0BC30C" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK__aspnet_Pa__Appli__13F1F5EB" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK__aspnet_Ro__Appli__16CE6296" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK__aspnet_Us__Appli__15DA3E5D" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK__aspnet_Me__UserI__3BFFE745" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK__aspnet_Pe__PathI__2334397B" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK__aspnet_Pe__PathI__24285DB4" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK__aspnet_Pe__UserI__251C81ED" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK__aspnet_Pr__UserI__2610A626" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_CARACTERISTICA_CFAMILIA" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_CARACTERISTICA_UNIDAD" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_CUSTODIO_CARGO" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_CFAMILIA_GRUPO" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_XCUOR_CUSTODIO" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_GRUPOSRI_GRUPO" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_PROVEEDOR_GRUPO" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_MODELO_MARCA" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_PROVEEDOR_PAIS" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_PROVEEDOR_PAIS1" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_PROVEEDOR_PAIS2" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_UORGANICA_UGEOGRAFICA" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_XCUOR_UORGANICA" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.aspnet_UsersInRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.USUROLPPC" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.TIPO_SEGURO" Width="1.5" PointX="23.375" PointY="7.75" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_ACTIVO_TIPOSEGURO" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.HISTORIAL_PASSWORD" Width="1.5" PointX="23.375" PointY="10.75" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.BLOQUEO_PASSWORD" Width="1.5" PointX="15.375" PointY="23.75" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.MANTENIMIENTO" Width="1.5" PointX="5.25" PointY="37.5" />
+        <AssociationConnector Association="C5ALIANZAVALLE23102015Model.FK_MANTENIMIENTO_ACTIVO" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.DetalleModulo" Width="1.5" PointX="24.375" PointY="0.75" />
+        <EntityTypeShape EntityType="C5ALIANZAVALLE23102015Model.Cabecera" Width="1.5" PointX="17.375" PointY="23.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
