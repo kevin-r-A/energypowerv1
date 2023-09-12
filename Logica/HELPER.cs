@@ -2100,8 +2100,33 @@ namespace Logica
             var err = sql.Parameters["@err"].Value.ToString();
             return procesado;
         }
+        public static DataTable GetPendientesBaja(string user_id)
+        {
+            Datos.SqlService sql = new Datos.SqlService();
+            return sql.ExecuteSqlDataTable(
+                "SELECT APB.ACTBAJ_ID, APB.ACT_ID AS 'ACT ID', APB.ACT_TIPO AS 'TIPO', APB.USERNAME AS 'CREADO POR', APB.ACT_FECHABAJA AS 'FECHA BAJA', E.EST_NOMBRE AS 'TIPO BAJA', APB.ACT_OBSBAJA AS 'OBSERVACION', APB.ACTBAJ_UUID, ACTBAJ_PROCESADO,A.ACT_CODBARRAS AS 'COD. BARRAS', AAB.APRACT_PROCESADO AS 'PROCESADO', AAB.APRACT_APROBADO AS 'APROBADO', AAB.APRACT_SIGUIENTE, AAB.APRACT_ID " +
+                " FROM ACTIVOS_PARA_BAJA APB INNER JOIN ACTIVO A on A.ACT_ID = APB.ACT_ID INNER JOIN APROBACION_ACTIVOS_BAJA AAB on APB.ACTBAJ_ID = AAB.ACTBAJ_ID " +
+                " INNER JOIN ESTADO E on APB.ACT_TIPOBAJA = E.EST_ID" +
+                " WHERE APB.ACTBAJ_PROCESADO=0 AND AAB.USER_ID='" + user_id + "'");
+        }
+        public static bool AprobarRechazarBajas(int apractId, int aprobado, int actbajId, string archivo)
+        {
+            bool procesado = false;
+            Datos.SqlService sql = new Datos.SqlService();
+            sql.AddParameter("@APRACT_ID", SqlDbType.Int, apractId);
+            sql.AddParameter("@APROBADO", SqlDbType.Int, aprobado);
+            sql.AddParameter("@ACTBAJ_ID", SqlDbType.Int, actbajId);
+            sql.AddParameter("@err", SqlDbType.VarChar, "", 350, ParameterDirection.Output);
+            sql.AddParameter("@procesado", SqlDbType.Bit, 0, 1, ParameterDirection.Output);
+            sql.AddParameter("@APRACT_ARCHIVO", SqlDbType.NVarChar, archivo);
+
+            sql.ExecuteSP("usp_AprobarRechazarBajaACTIVO");
+
+            procesado = bool.Parse(sql.Parameters["@procesado"].Value.ToString());
+            return procesado;
+        }
     }
-    }
+}
 
     
 

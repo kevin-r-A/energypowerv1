@@ -374,7 +374,7 @@ public partial class TrasladosMas : System.Web.UI.Page
             }
 
             //2012-02-15_Andrea.- Llamar para crear PDF
-            if (contadort != 0 )
+            if (contadort != 0 && procesado)
             {
                     
                     CrearPdf(contadort, Arr, custodio, newCus, NuevaCiu, "Acta Entrega TM - " + ddCustodio44.SelectedItem.Text, antGeo2, antUor2, antCus, antUor);

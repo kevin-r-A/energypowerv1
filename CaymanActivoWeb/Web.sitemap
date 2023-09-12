@@ -5,7 +5,7 @@
 
     <siteMapNode title="Gestión de Activos" roles="*" image="~/Img/a.png" >
 
-      <!-- <siteMapNode url="~/Site/Impresion/ImprimirCod.aspx" title="Generar Código de Barras"/>-->
+      <siteMapNode url="~/Site/Impresion/ImprimirCod.aspx" title="Generar Código de Barras"/>
       <siteMapNode url="~/Site/Activos/Nuevo.aspx" title="Ingresar Items"/>
       <siteMapNode url="~/Site/Activos/Modificar.aspx" title="Buscar y Modificar Items"/>
       
@@ -23,6 +23,7 @@
         <siteMapNode url="~/Site/ZEst/ZEstrucomp.aspx" title="Estructura y Componente"/>
         <siteMapNode url="~/Site/ZPro/ZProveedor.aspx" title="Proveedor"/>
         <siteMapNode url="~/Site/ZTSeg/ZTSeg.aspx" title="Seguros"/>
+		  <siteMapNode url="~/Site/ZApr/ZAprobacion.aspx" title="Aprobaciones"/>
       </siteMapNode>
 
       <siteMapNode title="Reportes" roles="*" >
@@ -41,8 +42,10 @@
       </siteMapNode>
       
       <siteMapNode url="~/Site/Activos/Baja.aspx" title="Baja de Items"/>
+		<siteMapNode url="~/Site/Activos/AutorizaBaja.aspx" title="Autoriza Baja de Items"/>
 
-    </siteMapNode>
+
+	</siteMapNode>
 
     <siteMapNode title="Traslados" roles="*" >
 

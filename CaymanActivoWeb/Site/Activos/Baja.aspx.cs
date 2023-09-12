@@ -474,9 +474,13 @@ public partial class Baja : System.Web.UI.Page
             int id = int.Parse(lblid.Text);
             int bajaok = 0;
             //doy de baja el item
-            objBaja.insBaja(int.Parse(lblid.Text), lbltipo.Text, Membership.GetUser().UserName, int.Parse(ddTipoBaja.SelectedValue), txtobsbaja.Text.Trim().ToUpper(), ref bajaok);
+            Guid guid = Guid.NewGuid();
+            bool result = objBaja.insBaja(int.Parse(lblid.Text), lbltipo.Text, Membership.GetUser().UserName, int.Parse(ddTipoBaja.SelectedValue), txtobsbaja.Text.Trim().ToUpper(), guid);
 
-            if (bajaok == 1)
+
+            string mensaje = "Item registrado con éxito.";
+
+            if (result)
             {
                 Logica.ACTIVO activo = Logica.ACTIVO.GetACTIVO(id);
                 activo.CuentaOrigen = lblCuentaBaja.Text;
@@ -490,7 +494,8 @@ public partial class Baja : System.Web.UI.Page
                 activo.CentroCostoDepre1 = lblCentroCostoDepre1.Text;
                 Asientos.BajaActivo(activo);
                 //objBaja.calcularFechaIniDepre(System.DateTime.Now);
-                string mensaje = "Item dado de Baja con éxito";
+
+                mensaje += " Item dado de Baja con éxito";
 
                 if (FileUpload1.HasFile)
                 {
@@ -506,7 +511,6 @@ public partial class Baja : System.Web.UI.Page
                         mensaje += " , </br> Documento no fue cargado: " + ex.Message;
                     }
                 }
-
                 mp2.Hide();
                 messbox1.Mensaje = mensaje;
                 messbox1.Tipo = "S";
@@ -528,6 +532,8 @@ public partial class Baja : System.Web.UI.Page
                 //F_CrearPdf(id);
                 //uprepo1.Update();
             }
+
+
             else
             {
                 messbox1.Mensaje = "No se pudo realizar la Baja";

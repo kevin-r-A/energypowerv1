@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
+using System.Web.Security;
 
 /// <summary>
 /// Descripción breve de Baja
@@ -38,32 +39,33 @@ public class BajaDepre
 
         sql.ExecuteSql("update DEPRECIACIONSRI set  DEP_FECHABAJA = '" + fecha + "' where DEP_ID = " + ultId);
     }
-    public void insBaja(int id, string tipo, string user, int tipobaja, string obsbaja, ref int ok)
+    public bool insBaja(int id, string tipo, string user, int tipobaja, string obsbaja, Guid act_uuid)
     {
-        try
+        bool procesado = false;
+        Datos.SqlService sql = new Datos.SqlService();
+        sql.AddParameter("@ACT_ID", SqlDbType.Int, id);
+        sql.AddParameter("@ACT_TIPO", SqlDbType.VarChar, tipo);
+        sql.AddParameter("@USERNAME", SqlDbType.VarChar, user);
+        sql.AddParameter("@ACT_FECHABAJA", SqlDbType.SmallDateTime, DateTime.Now);
+
+        DateTime FechaTblDepre = calcularFechaIniDepre(DateTime.Now);
+
+        sql.AddParameter("@ACT_TIPOBAJA", SqlDbType.Int, tipobaja);
+        sql.AddParameter("@ACT_OBSBAJA", SqlDbType.VarChar, obsbaja);
+        sql.AddParameter("@ACT_UUID", SqlDbType.UniqueIdentifier, act_uuid);
+        sql.AddParameter("@err", SqlDbType.VarChar, "", 350, ParameterDirection.Output);
+        sql.AddParameter("@procesado", SqlDbType.Bit, 0, 1, ParameterDirection.Output);
+
+        sql.ExecuteSP("usp_CrearBajaACTIVO");
+
+        procesado = bool.Parse(sql.Parameters["@procesado"].Value.ToString());
+
+        if (procesado)
         {
-            Datos.SqlService sql = new Datos.SqlService();
-            sql.AddParameter("@ACT_ID", SqlDbType.Int, id);
-            sql.AddParameter("@ACT_TIPO", SqlDbType.VarChar, tipo);
-            sql.AddParameter("@USERNAME", SqlDbType.VarChar, user);
-            sql.AddParameter("@ACT_FECHABAJA", SqlDbType.SmallDateTime, DateTime.Now);
-
-            DateTime FechaTblDepre = calcularFechaIniDepre(DateTime.Now);
-
-            sql.AddParameter("@ACT_TIPOBAJA", SqlDbType.Int, tipobaja);
-            sql.AddParameter("@ACT_OBSBAJA", SqlDbType.VarChar, obsbaja);
-            sql.AddParameter("@err", SqlDbType.VarChar, "", 350, ParameterDirection.Output);
-
-            sql.ExecuteSP("usp_BajaACTIVO");
-
             ActualizaFechaBajaTblDepre(FechaTblDepre, id);
+        }
 
-            ok = 1;
-        }
-        catch (Exception ex)
-        {
-            ok = 0;
-        }
+        return procesado;
     }
 
     public Int64 IdUltimaDepreciacion(Int64 id)
@@ -80,5 +82,18 @@ public class BajaDepre
             return 0;
         }
     }
-  
+    public DataTable GetBajasPendientes()
+    {
+        return Logica.HELPER.GetPendientesBaja(Membership.GetUser().ProviderUserKey.ToString());
+    }
+    public bool AprobarRechazar(int APRACT_ID, int APROBADO, int ACTBAJ_ID, int act_Id, string motivoBaja, string motivoBajaDesc, string archivo)
+    {
+        var procesado = Logica.HELPER.AprobarRechazarBajas(APRACT_ID, APROBADO, ACTBAJ_ID, archivo);
+        if (procesado)
+        {
+            DateTime FechaTblDepre = calcularFechaIniDepre(DateTime.Now);
+            ActualizaFechaBajaTblDepre(FechaTblDepre, act_Id);
+        }
+        return procesado;
+    }
 }

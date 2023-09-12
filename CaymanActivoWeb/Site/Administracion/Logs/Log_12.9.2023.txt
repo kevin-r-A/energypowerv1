@@ -1,0 +1,24 @@
+9/12/2023 9:34:01 AM ==> Baja
+ Void ibsave_Click(System.Object, System.Web.UI.ImageClickEventArgs)
+ Usuario:cayman<< No se encontró el procedimiento almacenado 'usp_CrearBajaACTIVO'.
+
+System.Web.UI.WebControls.ImageButton
+ Void OnClick(System.Web.UI.ImageClickEventArgs)
+System.Web.UI.WebControls.ImageButton
+ Void RaisePostBackEvent(System.String)
+System.Web.UI.Page
+ Void ProcessRequestMain(Boolean, Boolean)
+
+
+9/12/2023 1:53:52 PM ==> TrasladosMas
+ Void ibtrans_Click(System.Object, System.Web.UI.ImageClickEventArgs)
+ Usuario:cayman<< Uno o mas activos no se pudieron trasnferir 
+
+System.Web.UI.WebControls.ImageButton
+ Void OnClick(System.Web.UI.ImageClickEventArgs)
+System.Web.UI.WebControls.ImageButton
+ Void RaisePostBackEvent(System.String)
+System.Web.UI.Page
+ Void ProcessRequestMain(Boolean, Boolean)
+
+
