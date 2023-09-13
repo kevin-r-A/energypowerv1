@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,6 +14,7 @@ public partial class VisualizaPDF : System.Web.UI.Page
         {
 
             Response.ContentType = "application/pdf";
+            Debug.WriteLine(Session["pdfFileName"].ToString());
 
             Response.WriteFile(Session["pdfFileName"].ToString());
         }

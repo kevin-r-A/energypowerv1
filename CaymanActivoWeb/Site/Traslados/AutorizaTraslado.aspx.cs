@@ -61,48 +61,77 @@ namespace Site.Traslados
 
                 if (activos.Rows.Count == 1)
                 {
-
+                    Session["actId"] = activos.Rows[0]["ACT_ID"].ToString();
                     Object anteriorCus = sql.ExecuteSqlObject("select (cus_nombres +' '+ CUS_apellidos) from CUSTODIO where cus_id='" +
                                                               activos.Rows[0]["CUS_ID1"].ToString() + "'");
+                    Logica.ACTIVO _act1 = new Logica.ACTIVO(int.Parse(Session["actId"].ToString()));
+                    Logica.UGEOGRAFICA ugeOrigen = new Logica.UGEOGRAFICA(_act1.UGE_ID2);
+                    Logica.UGEOGRAFICA ugeDestino = new Logica.UGEOGRAFICA(int.Parse(activos.Rows[0]["UGE_ID2"].ToString()));
+                    Logica.UORGANICA uorOrigen = new Logica.UORGANICA(_act1.UOR_ID2);
+                    Logica.UORGANICA uorDestino = new Logica.UORGANICA(int.Parse(activos.Rows[0]["UOR_ID1"].ToString()));
+                    Logica.GRUPO gruOrigen = new Logica.GRUPO(_act1.GRU_ID1);
+                    _act1.CuentaOrigen = gruOrigen.GRU_CTA1;
+                    _act1.CuentaDestino = gruOrigen.GRU_CTA1;
+                    _act1.Oficina1 = ugeOrigen.UGE_CODIGO;
+                    _act1.Oficina2 = ugeDestino.UGE_CODIGO;
+                    _act1.CentroCosto1 = uorOrigen.UOR_CODIGO;
+                    _act1.CentroCosto2 = uorDestino.UOR_CODIGO;
+                    _act1.CuentaDepreOrigen = gruOrigen.GRU_CTA3;
+                    _act1.CuentaDepreDestino = gruOrigen.GRU_CTA3;
+                    _act1.CentroCostoDepre1 = uorOrigen.UOR_CODIGO;
+                    _act1.CentroCostoDepre2 = uorDestino.UOR_CODIGO;
+                    _act1.OficinaDepre1 = ugeOrigen.UGE_CODIGO;
+                    _act1.OficinaDepre2 = ugeDestino.UGE_CODIGO;
+                    _act1.DebitoDepre1 = _act1.ACT_DEPREACUMULADA.ToString("0.00");
+                    _act1.CreditoDepre1 = "0";
+                    _act1.DebitoDepre2 = "0";
+                    _act1.CreditoDepre2 = _act1.ACT_DEPREACUMULADA.ToString("0.00");
+                    Asientos.TransferenciaActivo(_act1);
+
                     Session["fechareporte"] = System.DateTime.Now.ToString("ddMMyyyyHHmmss");
                     Session["pdfFileName"] = "PDF//Acta Entrega TI - " + nuevoCus +" "+ Session["fechareporte"].ToString()+".pdf";
                     Session["cusIni"] = anteriorCus;
-                    Session["actId"] = activos.Rows[0]["ACT_ID"].ToString();
+                    
                     Session["cusId"] = nuevosActivos.Rows[0]["CUS_ID1"].ToString();
                     //Session["MICORREOTRASLADO"] = sql.ExecuteSqlObject("select CUS_EMAIL from CUSTODIO where CUS_ID='" + Session["cusId"] + "'");
                 }
-                //else if (activos.Rows.Count > 1)
-                //{
-                //    List<string> actIds = new List<string>();
-                //    List<string> cusIds = new List<string>();
-                //    foreach (DataRow antiguosActivosRow in activos.Rows)
-                //    {
-                //        actIds.Add(antiguosActivosRow["ACT_ID"].ToString());
-                //        cusIds.Add(antiguosActivosRow["CUS_ID1"].ToString());
-                //        ExternalWebService.UpdateActivos(int.Parse(antiguosActivosRow["ACT_ID"].ToString()));
-                //    }
+                else if (activos.Rows.Count > 1)
+                {
+                    List<string> actIds = new List<string>();
+                    List<string> cusIds = new List<string>();
+                    foreach (DataRow antiguosActivosRow in activos.Rows)
+                    {
+                        actIds.Add(antiguosActivosRow["ACT_ID"].ToString());
+                        cusIds.Add(antiguosActivosRow["CUS_ID1"].ToString());
+                        //ExternalWebService.UpdateActivos(int.Parse(antiguosActivosRow["ACT_ID"].ToString()));
+                    }
 
-                //    var distCus = cusIds.Distinct().ToList();
-                //    if (distCus.Count() == 1)
-                //    {
-                //        Object anteriorCus = sql.ExecuteSqlObject("select (cus_nombres +' '+ CUS_apellidos) from CUSTODIO where cus_id='" +
-                //                                                  activos.Rows[0]["CUS_ID1"].ToString() + "'");
-                //        Session["cusIni"] = anteriorCus;
-                //    }
-                //    else
-                //    {
-                //        Session["cusIni"] = "SIN CUSTODIO";
-                //    }
+                    var distCus = cusIds.Distinct().ToList();
+                    if (distCus.Count() == 1)
+                    {
+                        Object anteriorCus = sql.ExecuteSqlObject("select (cus_nombres +' '+ CUS_apellidos) from CUSTODIO where cus_id='" +
+                                                                  activos.Rows[0]["CUS_ID1"].ToString() + "'");
+                        Session["cusIni"] = anteriorCus;
+                    }
+                    else
+                    {
+                        Session["cusIni"] = "SIN CUSTODIO";
+                    }
 
-                //    Session["actId"] = string.Join(";", actIds);
-                //    Session["reportName"] = "Acta Entrega TM - " + nuevoCus + Session["actId"];
-                //    Session["cusId"] = nuevosActivos.Rows[0]["CUS_ID1"].ToString();
-                //    Session["MICORREOTRASLADO"] = sql.ExecuteSqlObject("select CUS_EMAIL from CUSTODIO where CUS_ID='" + Session["cusId"] + "'");
-                //    string nuevo = Session["cusId"].ToString();
-                //}
+                    Session["actId"] = string.Join(";", actIds);
+                    Session["fechareporte"] = System.DateTime.Now.ToString("ddMMyyyyHHmmss");
+                    Session["pdfFileName"] = "PDF//Acta Entrega TM - " + nuevoCus + " " + Session["fechareporte"].ToString() + ".pdf";
+                    
+                }
 
 
                 _traslado.CreaPdf(guid, Server, activos, Session["fechareporte"].ToString());
+                var nombreacta = Session["pdfFileName"].ToString();
+                string asunto = "Traslado de activos y/o bienes de control";
+                string cuerpo = "Estimada(o), se adjunta Acta de Traslado de activos y/o bienes de control administrativo.\r\n\r\n\r\n\r\n";
+                string rutaPDF = Server.MapPath(nombreacta);
+                Correos correos = new Correos();
+                correos.envioCorreosEnergyPower(asunto, cuerpo, rutaPDF);
                 abreVentana("VisualizaPDF.aspx?pdf=yes");
 
             }

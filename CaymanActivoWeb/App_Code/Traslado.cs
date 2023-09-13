@@ -52,21 +52,38 @@ namespace CustomEditors
                              antiguosActivos.Rows[0]["UOR_ID2"] + ";" +
                              antiguosActivos.Rows[0]["UOR_ID3"];
                 F_CrearPdfIndividual(guid, Server, antiguosActivos.Rows[0]["CUS_ID1"].ToString(), nuevosActivos.Rows[0]["CUS_ID1"].ToString(),
-                    int.Parse(antiguosActivos.Rows[0]["ACT_ID"].ToString()), ubiorg, ubigeo, "Acta Entrega TI - ",fecha);
+                    int.Parse(antiguosActivos.Rows[0]["ACT_ID"].ToString()), ubiorg, ubigeo, "Acta Entrega TI - ", fecha);
             }
             else if (antiguosActivos.Rows.Count > 1)
             {
                 List<string> actIds = new List<string>();
                 List<string> cusIds = new List<string>();
+                List<string> ubigeo = new List<string>();
+                List<string> ubiorg = new List<string>();
+
                 foreach (DataRow antiguosActivosRow in antiguosActivos.Rows)
                 {
                     actIds.Add(antiguosActivosRow["ACT_ID"].ToString());
                     cusIds.Add(antiguosActivosRow["CUS_ID1"].ToString());
+
+                    string ugeIdConcatenado = string.Format("{0};{1};{2};{3}",
+                     antiguosActivosRow["UGE_ID1"],
+                     antiguosActivosRow["UGE_ID2"],
+                     antiguosActivosRow["UGE_ID3"],
+                     antiguosActivosRow["UGE_ID4"]);
+                                ubigeo.Add(ugeIdConcatenado);
+
+                    // Concatenar valores de UOR_ID y agregar a ubiorg
+                    string uorIdConcatenado = string.Format("{0};{1};{2}",
+                        antiguosActivosRow["UOR_ID1"],
+                        antiguosActivosRow["UOR_ID2"],
+                        antiguosActivosRow["UOR_ID3"]);
+                    ubiorg.Add(uorIdConcatenado);
                 }
 
                 CrearPdfMasivo(guid, Server, 0, actIds.ToArray(), cusIds.ToArray(), nuevosActivos.Rows[0]["CUS_ID1"].ToString(),
                     nuevosActivos.Rows[0]["UOR_ID2"].ToString(), "Acta Entrega TM - ", nuevosActivos.Rows[0]["UGE_ID1"].ToString(), nuevosActivos.Rows[0]["UGE_ID2"].ToString(),
-                    nuevosActivos.Rows[0]["UGE_ID3"].ToString(), nuevosActivos.Rows[0]["UOR_ID2"].ToString(), fecha);
+                    nuevosActivos.Rows[0]["UGE_ID3"].ToString(), nuevosActivos.Rows[0]["UOR_ID2"].ToString(), fecha,ubigeo.ToArray(), ubiorg.ToArray());
             }
         }
 
@@ -360,7 +377,7 @@ namespace CustomEditors
             }
         }
         private void CrearPdfMasivo(Guid guid, HttpServerUtility Server, int contadort, string[] actId, string[] custodio, string newCus, string NuevaCiu, string nombre,
-            string uge1, string uge2, string uge3, string uor2, string fecha)
+            string uge1, string uge2, string uge3, string uor2, string fecha, string[] ubigeo, string[] ubiorg)
         {
             try
             {
@@ -372,11 +389,11 @@ namespace CustomEditors
                 Datos.SqlService sql1 = new Datos.SqlService();
                 Object AreaActivos = Membership.GetUser().UserName.ToString();
                 Object NuevoCus = sql1.ExecuteSqlObject("select (cus_nombres +' '+ CUS_apellidos) from CUSTODIO where cus_id='" + newCus + "'");
-                Object NewCiu = sql1.ExecuteSqlObject("select uge_nombre from ugeografica where uge_id='" + NuevaCiu + "'");
+                Object NewCiu = sql1.ExecuteSqlObject("select uge_nombre from ugeografica where uge_id='" + ubigeo[1] + "'");
                 Object ddUge11 = sql1.ExecuteSqlObject("select uge_nombre from ugeografica where uge_id='" + uge1 + "'");
                 Object ddUge22 = sql1.ExecuteSqlObject("select uge_nombre from ugeografica where uge_id='" + uge2 + "'");
                 Object ddUge33 = sql1.ExecuteSqlObject("select uge_nombre from ugeografica where uge_id='" + uge3 + "'");
-                Object ddUor22 = sql1.ExecuteSqlObject("select UOR_NOMBRE from UORGANICA where uge_id='" + uor2 + "'");
+                Object ddUor22 = sql1.ExecuteSqlObject("select UOR_NOMBRE from UORGANICA where uge_id='" + ubiorg[0] + "'");
                 string TituloReporte = ConfigurationManager.AppSettings["TituloReportes"].ToString();
 
                 if (NuevoCus != null)
@@ -401,7 +418,7 @@ namespace CustomEditors
                 document.AddSubject("ACTA DE ENTREGA RECEPCIÓN");
 
                 //string Path = "c:/" + System.DateTime.Now.ToString("yyyy-MM-dd HH_mm_ss") + "ACTA DE ENTREGA RECEPCIÓN TRANSFERENCIA MASIVA.pdf";
-                string Path = Server.MapPath("./PDF/") + nombre + " " +fecha + ".pdf";
+                string Path = Server.MapPath("./PDF/") + nombre + " " + fecha + ".pdf";
 
                 //creamos un instancia del objeto escritor de documento
                 PdfWriter writer = PdfWriter.GetInstance(document, new System.IO.FileStream(Path, System.IO.FileMode.Create));

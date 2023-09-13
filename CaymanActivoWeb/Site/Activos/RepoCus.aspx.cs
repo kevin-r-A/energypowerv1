@@ -253,6 +253,7 @@ public partial class RepoCus : System.Web.UI.Page
             messbox1.showMess();
         }
     }
+
     public void exportarPdf(GridView grid, string nombre)
     {
         try
@@ -274,7 +275,7 @@ public partial class RepoCus : System.Web.UI.Page
             //...ahora configuramos para que el tamaño de hoja sea A4
             //Document document = new Document(iTextSharp.text.PageSize.A4_LANDSCAPE);
             Document document = new Document(new RectangleReadOnly(842f, 595f), 50, 30, 15, 5);
-           
+
 
             //Agregar tabla a Pdf
             PdfPTable table = new PdfPTable(8);
@@ -332,7 +333,7 @@ public partial class RepoCus : System.Web.UI.Page
             clSpace.Colspan = noOfColumns;
             mainTable.AddCell(clSpace);
 
-            
+
             // Sets the gridview column names as table headers.
             for (int i = 0; i < noOfColumns; i++)
             {
@@ -360,7 +361,7 @@ public partial class RepoCus : System.Web.UI.Page
                     {
                         string s = grid.Rows[rowNo].Cells[columnNo].Text.Trim();
 
-                       
+
                         if (s != "&nbsp;")
                         {
                             //GB. reemplazo caracteres en ASCII
@@ -447,7 +448,7 @@ public partial class RepoCus : System.Web.UI.Page
 
                 // Tells the mainTable to complete the row even if any cell is left incomplete.
                 mainTable.CompleteRow();
-                mainTable.SetWidths(new Single[] { 45, 90, 100, 70, 70, 120, 120, 100, 150,100,60 });
+                mainTable.SetWidths(new Single[] { 45, 90, 100, 70, 70, 120, 120, 100, 150, 100, 60 });
             }
 
 
@@ -548,28 +549,23 @@ public partial class RepoCus : System.Web.UI.Page
             document.Add(cCosto);
 
             document.Add(new Paragraph("\n"));*/
-            document.Add(new Paragraph("\n"));
-            Paragraph P1 = new Paragraph("COOPERATIVA DE AHORRO Y CREDITO ALIANZA DEL VALLE LTDA. ");
-            P1.Alignment = Element.ALIGN_CENTER;
 
-            document.Add(P1);
-            document.Add(new Paragraph("\n"));
-            Paragraph P = new Paragraph("ACTA DE LOS ACTIVOS FIJOS Y BIENES SUJETOS DE CONTROL ASIGNADOS POR CUSTODIO"  +"\n", myfontTitulo);
+            Paragraph P = new Paragraph("ACTA DE LOS ACTIVOS FIJOS Y BIENES SUJETOS DE CONTROL ASIGNADOS POR CUSTODIO" + "\n", myfontTitulo);
             P.Alignment = Element.ALIGN_CENTER;
             document.Add(P);
             document.Add(new Paragraph("\n"));
-            Paragraph P01 = new Paragraph("ACTA DE LOS ACTIVOS FIJOS Y BIENES SUJETOS DE CONTROL DE LA UNIDAD ADMINISTRATIVA; ENTRE EL SEÑOR(a). " +  
+            Paragraph P01 = new Paragraph("ACTA DE LOS ACTIVOS FIJOS Y BIENES SUJETOS DE CONTROL DE LA UNIDAD ADMINISTRATIVA; ENTRE EL SEÑOR(a). " +
                                           cusActivoFijo + ", REPRESENTANTE DE ACTIVOS FIJOS, Y EL(la) SEÑOR(a) " + cust1 + ", CUSTODIO, AL " + DateTime.Now.ToString("dd-MM-yyyy"), myfont);
             P01.Alignment = Element.ALIGN_JUSTIFIED;
             document.Add(P01);
             document.Add(new Paragraph("\n"));
-            Paragraph P02 = new Paragraph("En la ciudad de QUITO, los suscritos señores(a) " +   cusActivoFijo +
-                                          ", quien entrega los bienes, señor(a) " + cust1 +", quien recibe los bienes, con el objeto de realizar la diligencia de entrega – recepción correspondiente. Al efecto con la presencia de las personas mencionadas anteriormente se procede con la constatación física y entrega-recepción de los activos fijos y bienes sujetos de control administrativo, de acuerdo con el siguiente detalle: \n" , myfont);
+            Paragraph P02 = new Paragraph("En la ciudad de QUITO, los suscritos señores(a) " + cusActivoFijo +
+                                          ", quien entrega los bienes, señor(a) " + cust1 + ", quien recibe los bienes, con el objeto de realizar la diligencia de entrega – recepción correspondiente. Al efecto con la presencia de las personas mencionadas anteriormente se procede con la constatación física y entrega-recepción de los activos fijos y bienes sujetos de control administrativo, de acuerdo con el siguiente detalle: \n", myfont);
             P02.Alignment = Element.ALIGN_JUSTIFIED;
             document.Add(P02);
             document.Add(new Paragraph("\n"));
-            
-            Paragraph P03 = new Paragraph("Lista del inventario de bienes constatados físicamente: \n" , myfont);
+
+            Paragraph P03 = new Paragraph("Lista del inventario de bienes constatados físicamente: \n", myfont);
             P03.Alignment = Element.ALIGN_JUSTIFIED;
             document.Add(P03);
 
@@ -649,7 +645,6 @@ public partial class RepoCus : System.Web.UI.Page
             messbox1.showMess();
         }
     }
-
     private void abreVentana(string ventana)
     {
         string funcion = "OpenWindows('" + ventana + "')";

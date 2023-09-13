@@ -72,6 +72,9 @@ public partial class Site_Activos_Nuevo : System.Web.UI.Page
                 cdduor1.ParentControlID = "ddCcosto";
                 cdduor1.ServiceMethod = "GetUor1Cco";
             }
+            DateTime today = DateTime.Now;
+            datefechacompra.MinDate = new DateTime(today.Year, today.Month, 1);
+            datefechacompra.MaxDate = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
 
             lblCuentaTransitoria.Text = ConfigurationManager.AppSettings["CUENTATRANSITORIA"];
             lblOficina1.Text = ConfigurationManager.AppSettings["OFICINAORIGEN"];
@@ -1142,7 +1145,12 @@ public partial class Site_Activos_Nuevo : System.Web.UI.Page
                                                         //Asientos.InsertActivo(act);
 
                                                         F_GeneraPDF(act, _actid);
-
+                                                        var nombreacta = Session["nombredelacta"].ToString();
+                                                        var asunto = "Ingreso de nuevo activo y/o bien de control";
+                                                        var cuerpo = "Estimada(o), se adjunta Acta de Ingreso de nuevo activo y/o bien de control administrativo.\r\n\r\n\r\nSaludos cordiales, Activos Fijos";
+                                                        var rutaPDF = Server.MapPath("PDF_ACTING/" + nombreacta + ".pdf");
+                                                        Correos correos = new Correos();
+                                                        correos.envioCorreosEnergyPower(asunto, cuerpo, rutaPDF);
                                                         //mensaje ok
                                                         messbox1.Mensaje = "Activo Guardado con éxito!";
                                                         messbox1.Tipo = "S";
@@ -1343,7 +1351,6 @@ public partial class Site_Activos_Nuevo : System.Web.UI.Page
 
         return Valor;
     }
-
     public void F_GeneraPDF(Logica.ACTIVO act, string _actid)
     {
         //datos PDF
@@ -1460,10 +1467,7 @@ public partial class Site_Activos_Nuevo : System.Web.UI.Page
                 "select mode.mod_nombre AS MODELO from (ACTIVO left join modelo as mode on activo.mod_id=mode.mod_id)WHERE ACTIVO.ACT_ID='" + act + "'");
             Object observaciones = sql.ExecuteSqlObject("select act_observaciones AS OBSERVACIONES from ACTIVO  WHERE ACTIVO.ACT_ID='" + act + "'");
             Object tipoActivo = sql.ExecuteSqlObject("select ACT_TIPO as TIPO_activo from ACTIVO WHERE ACTIVO.ACT_ID='" + act + "'");
-            Object proveedor1 = sql.ExecuteSqlObject(
-                "select isnull(PROVEEDOR.PRO_NOMBRE,'Sin Proveedor')  from ACTIVO inner join PROVEEDOR on ACTIVO.PRO_ID=PROVEEDOR.PRO_ID where ACTIVO.ACT_ID='" + act + "'");
-            Object factura = sql.ExecuteSqlObject(
-               "  select ISNULL(act_numfact,0) as Factura from activo where ACT_ID='" + act + "'");
+
 
 
 
@@ -1484,10 +1488,10 @@ public partial class Site_Activos_Nuevo : System.Web.UI.Page
             //... el asunto
             document.AddSubject("ACTA DE INGRESO");
 
-            //string Path = "c:/" + System.DateTime.Now.ToString("yyyy-MM-dd HH_mm_ss") + "ACTA DE ENTREGA RECEPCIÓN.pdf";
-            string Path = Server.MapPath("./PDF_ACTING/") + nombre + " " + System.DateTime.Now.ToString("ddMMyyyyHHmmss") + ".pdf";
+            var nuevovalor = nombre + " " + System.DateTime.Now.ToString("ddMMyyyyHHmmss");
+            string Path = Server.MapPath("./PDF_ACTING/") + nuevovalor + ".pdf";
             string cusActivoFijo = ConfigurationManager.AppSettings["AreaActivosFijosIngreso"];
-            
+
             //creamos un instancia del objeto escritor de documento
             PdfWriter writer = PdfWriter.GetInstance(document, new System.IO.FileStream(Path, System.IO.FileMode.Create));
 
@@ -1521,170 +1525,121 @@ public partial class Site_Activos_Nuevo : System.Web.UI.Page
 
             iTextSharp.text.Font myfontTitulo = new iTextSharp.text.Font(
                 FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.BOLD));
-            /////////////////////////////////////////////////////////////////////
 
-            PdfPTable tableDatos = new PdfPTable(15);
-
+            PdfPTable tableDatos = new PdfPTable(11);
             Phrase phead1 = new Phrase();
-            phead1.Add(new Chunk("N° Comprobante", myfontLabel));
+            phead1.Add(new Chunk("Código de Barras", myfontLabel));
             PdfPCell cell1head = new PdfPCell(phead1);
             tableDatos.AddCell(cell1head);
 
             Phrase phead2 = new Phrase();
-            phead2.Add(new Chunk("N° Factura", myfontLabel));
+            phead2.Add(new Chunk("Tipo de Bien", myfontLabel));
             PdfPCell cell2head = new PdfPCell(phead2);
             tableDatos.AddCell(cell2head);
-            
+
             Phrase phead3 = new Phrase();
-            phead3.Add(new Chunk("Proveedor", myfontLabel));
+            phead3.Add(new Chunk("Grupo/Cuenta", myfontLabel));
             PdfPCell cell3head = new PdfPCell(phead3);
             tableDatos.AddCell(cell3head);
-            
+
             Phrase phead4 = new Phrase();
-            phead4.Add(new Chunk("Código Barras", myfontLabel));
+            phead4.Add(new Chunk("Subgrupo", myfontLabel));
             PdfPCell cell4head = new PdfPCell(phead4);
             tableDatos.AddCell(cell4head);
-            
+
             Phrase phead5 = new Phrase();
-            phead5.Add(new Chunk("Tipo Activo", myfontLabel));
+            phead5.Add(new Chunk("Descripción", myfontLabel));
             PdfPCell cell5head = new PdfPCell(phead5);
             tableDatos.AddCell(cell5head);
-            
+
             Phrase phead6 = new Phrase();
-            phead6.Add(new Chunk("Grupo", myfontLabel));
+            phead6.Add(new Chunk("Información Técnica", myfontLabel));
             PdfPCell cell6head = new PdfPCell(phead6);
             tableDatos.AddCell(cell6head);
-            
+
             Phrase phead7 = new Phrase();
-            phead7.Add(new Chunk("Descripción", myfontLabel));
+            phead7.Add(new Chunk("Estado", myfontLabel));
             PdfPCell cell7head = new PdfPCell(phead7);
             tableDatos.AddCell(cell7head);
-            
+
             Phrase phead8 = new Phrase();
-            phead8.Add(new Chunk("Estado", myfontLabel));
+            phead8.Add(new Chunk("Marca", myfontLabel));
             PdfPCell cell8head = new PdfPCell(phead8);
             tableDatos.AddCell(cell8head);
-            
+
             Phrase phead9 = new Phrase();
-            phead9.Add(new Chunk("Marca", myfontLabel));
+            phead9.Add(new Chunk("Serie", myfontLabel));
             PdfPCell cell9head = new PdfPCell(phead9);
             tableDatos.AddCell(cell9head);
-            
+
             Phrase phead10 = new Phrase();
-            phead10.Add(new Chunk("Serie", myfontLabel));
+            phead10.Add(new Chunk("Modelo", myfontLabel));
             PdfPCell cell10head = new PdfPCell(phead10);
             tableDatos.AddCell(cell10head);
-            
+
             Phrase phead11 = new Phrase();
-            phead11.Add(new Chunk("Modelo", myfontLabel));
+            phead11.Add(new Chunk("Observaciones", myfontLabel));
             PdfPCell cell11head = new PdfPCell(phead11);
             tableDatos.AddCell(cell11head);
-            
-            Phrase phead12 = new Phrase();
-            phead12.Add(new Chunk("Observaciones", myfontLabel));
-            PdfPCell cell12head = new PdfPCell(phead12);
-            tableDatos.AddCell(cell12head);
-
-            Phrase phead13 = new Phrase();
-            phead13.Add(new Chunk("Valor Compra", myfontLabel));
-            PdfPCell cell13head = new PdfPCell(phead13);
-            tableDatos.AddCell(cell13head);
-
-
-            Phrase phead14 = new Phrase();
-            phead14.Add(new Chunk("Depreciación Acumulada", myfontLabel));
-            PdfPCell cell14head = new PdfPCell(phead14);
-            tableDatos.AddCell(cell14head);
-
-
-            Phrase phead15 = new Phrase();
-            phead15.Add(new Chunk("Valor en Libros", myfontLabel));
-            PdfPCell cell15head = new PdfPCell(phead15);
-            tableDatos.AddCell(cell15head);
 
 
             Phrase phead111 = new Phrase();
-            phead111.Add(new Chunk("", myfontLabel));
+            phead111.Add(new Chunk(codigoBarras.ToString(), myfontLabel));
             PdfPCell cell111head = new PdfPCell(phead111);
             tableDatos.AddCell(cell111head);
 
-            
             Phrase phead211 = new Phrase();
-            phead211.Add(new Chunk(factura.ToString(), myfontLabel));
+            phead211.Add(new Chunk(tipoActivo.ToString(), myfontLabel));
             PdfPCell cell211head = new PdfPCell(phead211);
             tableDatos.AddCell(cell211head);
-            
+
             Phrase phead311 = new Phrase();
-            phead311.Add(new Chunk(proveedor1.ToString(), myfontLabel)); 
+            phead311.Add(new Chunk(grupo.ToString(), myfontLabel));
             PdfPCell cell311head = new PdfPCell(phead311);
             tableDatos.AddCell(cell311head);
-            
+
             Phrase phead411 = new Phrase();
-            phead411.Add(new Chunk(codigoBarras.ToString(), myfontLabel));
+            phead411.Add(new Chunk(subGrupo.ToString(), myfontLabel));
             PdfPCell cell411head = new PdfPCell(phead411);
             tableDatos.AddCell(cell411head);
-            
+
             Phrase phead511 = new Phrase();
-            phead511.Add(new Chunk(tipoActivo.ToString(), myfontLabel)); 
+            phead511.Add(new Chunk(descrip.ToString(), myfontLabel));
             PdfPCell cell511head = new PdfPCell(phead511);
             tableDatos.AddCell(cell511head);
-            
+
             Phrase phead611 = new Phrase();
-            phead611.Add(new Chunk(grupo.ToString(), myfontLabel));
+            phead611.Add(new Chunk(detalleTecnico.ToString(), myfontLabel));
             PdfPCell cell611head = new PdfPCell(phead611);
             tableDatos.AddCell(cell611head);
-            
+
             Phrase phead711 = new Phrase();
-            phead711.Add(new Chunk(descrip.ToString(), myfontLabel));
+            phead711.Add(new Chunk(estado.ToString(), myfontLabel));
             PdfPCell cell711head = new PdfPCell(phead711);
             tableDatos.AddCell(cell711head);
-            
+
             Phrase phead811 = new Phrase();
-            phead811.Add(new Chunk(estado.ToString(), myfontLabel));
+            phead811.Add(new Chunk(marca.ToString(), myfontLabel));
             PdfPCell cell811head = new PdfPCell(phead811);
             tableDatos.AddCell(cell811head);
-            
+
             Phrase phead911 = new Phrase();
-            phead911.Add(new Chunk(marca.ToString(), myfontLabel));
+            phead911.Add(new Chunk(serie.ToString(), myfontLabel));
             PdfPCell cell911head = new PdfPCell(phead911);
             tableDatos.AddCell(cell911head);
-            
+
             Phrase phead1011 = new Phrase();
-            phead1011.Add(new Chunk(serie.ToString(), myfontLabel));
+            phead1011.Add(new Chunk(modelo.ToString(), myfontLabel));
             PdfPCell cell1011head = new PdfPCell(phead1011);
             tableDatos.AddCell(cell1011head);
-            
+
             Phrase phead1111 = new Phrase();
-            phead1111.Add(new Chunk(modelo.ToString(), myfontLabel));
+            phead1111.Add(new Chunk(observaciones.ToString(), myfontLabel));
             PdfPCell cell1111head = new PdfPCell(phead1111);
             tableDatos.AddCell(cell1111head);
 
-
-            Phrase phead1211 = new Phrase();
-            phead1211.Add(new Chunk(observaciones.ToString(), myfontLabel));
-            PdfPCell cell1211head = new PdfPCell(phead1211);
-            tableDatos.AddCell(cell1211head);
-
-            Phrase phead1311 = new Phrase();
-            phead1311.Add(new Chunk(valcompra.ToString(), myfontLabel));
-            PdfPCell cell1311head = new PdfPCell(phead1311);
-            tableDatos.AddCell(cell1311head);
-
-
-            Phrase phead1411 = new Phrase();
-            phead1411.Add(new Chunk("0", myfontLabel));
-            PdfPCell cell1411head = new PdfPCell(phead1411);
-            tableDatos.AddCell(cell1411head);
-
-            Phrase phead1511 = new Phrase();
-            phead1511.Add(new Chunk(valcompra.ToString(), myfontLabel));
-            PdfPCell cell1511head = new PdfPCell(phead1511);
-            tableDatos.AddCell(cell1511head);
-
             tableDatos.WidthPercentage = 100;
 
-            ////////////////////////////////////////////////////
-            
             //agregar todo el paquete de texto
             string ServerPath;
             ServerPath = Server.MapPath("");
@@ -1701,61 +1656,56 @@ public partial class Site_Activos_Nuevo : System.Web.UI.Page
                 myfontLabelCab);
             document.Add(UserName);
 
-            Paragraph P1 = new Paragraph("COOPERATIVA DE AHORRO Y CREDITO ALIANZA DEL VALLE LTDA. ");
-            P1.Alignment = Element.ALIGN_CENTER;
-
-            document.Add(P1);
             document.Add(new Paragraph("\n"));
-            Paragraph P = new Paragraph("ACTA ENTREGA RECEPCIÓN DE ACTIVOS FIJOS Y ACTIVOS DE CONTROL" + "\n", myfontTitulo);
+            Paragraph P = new Paragraph("ACTA DE INGRESO DE LOS ACTIVOS FIJOS Y BIENES SUJETOS DE CONTROL" + "\n", myfontTitulo);
             P.Alignment = Element.ALIGN_CENTER;
 
             document.Add(P);
             document.Add(new Paragraph("\n"));
-            CultureInfo culturaEspañol = new CultureInfo("es-ES");
-            Paragraph P01 = new Paragraph("En la ciudad de Quito, a los  " + DateTime.Now.Day + " del mes de  " + DateTime.Now.ToString("MMMM",culturaEspañol) + " del "+DateTime.Now.Year+ ", la COOPERATIVA DE AHORRO Y CREDITO ALIANZA DEL VALLE LTDA, realiza la entrega formal de los Activos Fijos y Activos de Control a Sr.  " +
-                                    NuevoCus.ToString()+ ", Oficial de crédito de la Agencia el  "+ Uorg1 + ", de acuerdo con el siguiente detalle:", myfont);
-            //", REPRESENTANTE DE ACTIVOS FIJOS, Y EL(la) SEÑOR(a) " +cusActivoFijo + ", CUSTODIO, AL " + DateTime.Now.ToString("dd-MM-yyyy"), myfont);
+
+            Paragraph P01 = new Paragraph("ACTA DE LOS ACTIVOS FIJOS Y BIENES SUJETOS DE CONTROL DE LA UNIDAD ADMINISTRATIVA; ENTRE EL SEÑOR(a). " +
+                                          cusActivoFijo + ", REPRESENTANTE DE ACTIVOS FIJOS, Y EL(la) SEÑOR(a) " + NuevoCus.ToString() + ", CUSTODIO, AL " + DateTime.Now.ToString("dd-MM-yyyy"), myfont);
             P01.Alignment = Element.ALIGN_JUSTIFIED;
             document.Add(P01);
             document.Add(new Paragraph("\n"));
-            //Paragraph P02 = new Paragraph("En la ciudad de QUITO, los suscritos señores(a) " +   cusActivoFijo +
-            //                              ", quien entrega los bienes, señor(a) " + NuevoCus.ToString() +", quien recibe los bienes, con el objeto de realizar la diligencia de entrega – recepción correspondiente. Al efecto con la presencia de las personas mencionadas anteriormente se procede con la constatación física y entrega-recepción de los activos fijos y bienes sujetos de control administrativo, de acuerdo con el siguiente detalle: \n" , myfont);
-            //P02.Alignment = Element.ALIGN_JUSTIFIED;
-            //document.Add(P02);
-            //document.Add(new Paragraph("\n"));
-            
-            //Paragraph P03 = new Paragraph("Lista del inventario de bienes constatados físicamente: \n" , myfont);
-            //P03.Alignment = Element.ALIGN_JUSTIFIED;
-            //document.Add(P03);
-            
-            //document.Add(new Paragraph("\n"));
-            
-            document.Add(tableDatos);
-            
+            Paragraph P02 = new Paragraph("En la ciudad de QUITO, los suscritos señores(a) " + cusActivoFijo +
+                                          ", quien entrega los bienes, señor(a) " + NuevoCus.ToString() + ", quien recibe los bienes, con el objeto de realizar la diligencia de entrega – recepción correspondiente. Al efecto con la presencia de las personas mencionadas anteriormente se procede con la constatación física y entrega-recepción de los activos fijos y bienes sujetos de control administrativo, de acuerdo con el siguiente detalle: \n", myfont);
+            P02.Alignment = Element.ALIGN_JUSTIFIED;
+            document.Add(P02);
             document.Add(new Paragraph("\n"));
-            
-            Paragraph P3 = new Paragraph("Se deja constancia que el custodio  el señor "+ NuevoCus.ToString() + " recibe a entera satisfacción los activos fijos detallados y  se encargará de velar por el buen uso, administración, así como garantizar que las condiciones sean adecuadas para su funcionamiento y no se encuentren en riesgo de deterioro.  En caso de pérdida o mal uso se aplicará lo establecido en la normativa interna de la Cooperativa.", myfont);
+
+            Paragraph P03 = new Paragraph("Lista del inventario de bienes constatados físicamente: \n", myfont);
+            P03.Alignment = Element.ALIGN_JUSTIFIED;
+            document.Add(P03);
+
+            document.Add(new Paragraph("\n"));
+
+            document.Add(tableDatos);
+
+            document.Add(new Paragraph("\n"));
+
+            Paragraph P3 = new Paragraph("Se deja constancia que el custodio a quien se entrega a satisfacción los bienes se encargará de velar por el buen uso, conservación, administración, utilización, así como que las condiciones sean adecuadas y no se encuentren en riesgo de deterioro de los bienes antes mencionados y confiados a su guarda, de acuerdo con lo que estipula el manual de activos fijos referente al control y administración.", myfont);
             P3.Alignment = Element.ALIGN_JUSTIFIED;
             document.Add(P3);
 
             document.Add(new Paragraph("\n"));
 
-            Paragraph P41 = new Paragraph("Para constancia de lo actuado y en fe de conformidad y aceptación, suscriben la presente acta entrega-recepción en tres ejemplares de igual tenor y efecto las personas que intervienen en esta diligencia. \n", myfont);
+            Paragraph P41 = new Paragraph("Para Constancia de lo actuado y en fe de conformidad y aceptación, suscriben la presente acta entrega-recepción en tres ejemplares de igual tenor y efecto las personas que intervienen en esta diligencia. \n", myfont);
             P41.Alignment = Element.ALIGN_JUSTIFIED;
             document.Add(P41);
 
             document.Add(new Paragraph("\n"));
-            
+
 
             document.Add(new Paragraph("\n\n", myfont));
             //Tabla para poner firmas
             PdfPTable tableFirma = new PdfPTable(2);
 
-            PdfPCell cellEntrega = new PdfPCell(new Phrase("COAC ALIANZA DEL VALLE", myfont));
-            PdfPCell cellRecibe = new PdfPCell(new Phrase("EMPLEADO", myfont));
-            PdfPCell cellEntrega1 = new PdfPCell(new Phrase(new Chunk("Área de Activos Fijos.", myfont)));
-            PdfPCell cellRecibe1 = new PdfPCell(new Phrase(new Chunk(NuevoCus.ToString(), myfontbold)));
-            PdfPCell cellEntrega2 = new PdfPCell(new Phrase("ENTREGA CONFORME", myfontbold));
+            PdfPCell cellEntrega = new PdfPCell(new Phrase(cusActivoFijo, myfont));
+            PdfPCell cellRecibe = new PdfPCell(new Phrase(NuevoCus.ToString(), myfont));
+            PdfPCell cellEntrega1 = new PdfPCell(new Phrase(new Chunk("Analista de Activos Fijos.", myfont)));
+            PdfPCell cellRecibe1 = new PdfPCell(new Phrase(new Chunk("", myfontbold)));
+            PdfPCell cellEntrega2 = new PdfPCell(new Phrase("ENTREGUÉ CONFORME", myfontbold));
             PdfPCell cellRecibe2 = new PdfPCell(new Phrase("RECIBÍ CONFORME", myfont));
 
             cellEntrega.BorderWidth = 0;
@@ -1787,7 +1737,7 @@ public partial class Site_Activos_Nuevo : System.Web.UI.Page
             document.Close();
 
             string filePath = Path;
-
+            Session["nombredelacta"] = nuevovalor;
             Session["pdfFileName"] = filePath;
 
             abreVentana("VisualizaPDF.aspx?pdf=yes"); //envio pdf para abrirlo en nueva pestaña
@@ -1804,11 +1754,6 @@ public partial class Site_Activos_Nuevo : System.Web.UI.Page
         }
     }
 
-    public int F_TiempoMesesGarantia(DateTime fechaIniGarantia, DateTime fechafinGarantia)
-    {
-        int meses = fechafinGarantia.Month - fechaIniGarantia.Month + (12 * (fechafinGarantia.Year - fechaIniGarantia.Year));
-        return meses;
-    }
 
     public string F_Mes(int m)
     {
@@ -2000,5 +1945,10 @@ public partial class Site_Activos_Nuevo : System.Web.UI.Page
         Logica.UORGANICA zet = new Logica.UORGANICA(Convert.ToInt32(ddUor1.SelectedValue));
         lblCentroCosto2.Text = zet.UOR_CODIGO;
         upAsiento.Update();
+    }
+    public int F_TiempoMesesGarantia(DateTime fechaIniGarantia, DateTime fechafinGarantia)
+    {
+        int meses = fechafinGarantia.Month - fechaIniGarantia.Month + (12 * (fechafinGarantia.Year - fechaIniGarantia.Year));
+        return meses;
     }
 }

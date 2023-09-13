@@ -9,10 +9,12 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.IO;
 using System.Net.Mail;
-using System.Web.Mail;
+//using System.Web.Mail;
 using System.Diagnostics;
 using System.Reflection;
 using System.Net.Configuration;
+using System.Net.Mime;
+using System.Net;
 
 /// <summary>
 /// Summary description for Correos
@@ -22,8 +24,50 @@ public class Correos
         public Correos()
         {
         }
+    public void envioCorreosEnergyPower(string asunto, string cuerpo, string rutaPDF)
+    {
 
-        public void enviarCorreo(string de, string nombre, string para, string asunto, string cuerpo, string cc, string nombreAdjunto, string tipoAdjunto)
+        // Configurar los detalles del correo
+        string remitente = ConfigurationManager.AppSettings["usuario_correo_logueo1"];
+        //string destinatario = Session["MICORREOBAJA"].ToString();
+        string clave = ConfigurationManager.AppSettings["Passw_correo_logueo1"];
+        string smtp = ConfigurationManager.AppSettings["SMTP"];
+
+        //string destinatario = "kevinabastidas@gmail.com";
+
+
+        // Crear el objeto MailMessage
+        MailMessage mensaje = new MailMessage(remitente, ConfigurationManager.AppSettings["destinatario1"]);
+        mensaje.To.Add(ConfigurationManager.AppSettings["destinatario2"]); // Agrega destinatario2
+        mensaje.Subject = asunto;
+        mensaje.Body = cuerpo;
+        Attachment adjunto = new Attachment(rutaPDF, MediaTypeNames.Application.Pdf);
+        mensaje.Attachments.Add(adjunto);
+        // Configurar el servidor SMTP de Office 365
+        var puerto = Convert.ToInt16(ConfigurationManager.AppSettings["SmtPort"]);
+        SmtpClient clienteSmtp = new SmtpClient(smtp, puerto);
+        clienteSmtp.EnableSsl = true;
+        clienteSmtp.UseDefaultCredentials = false;
+        clienteSmtp.Credentials = new NetworkCredential(remitente, clave);
+
+        try
+        {
+            // Enviar el correo
+            clienteSmtp.Send(mensaje);
+            Console.WriteLine("Correo enviado exitosamente.");
+            Debug.WriteLine("Este es un mensaje de depuración");
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error al enviar el correo: " + ex.Message);
+        }
+
+        // Cerrar el cliente SMTP y liberar recursos
+        clienteSmtp.Dispose();
+    }
+
+    public void enviarCorreo(string de, string nombre, string para, string asunto, string cuerpo, string cc, string nombreAdjunto, string tipoAdjunto)
         {
             System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
             msg.To.Add(para);            
