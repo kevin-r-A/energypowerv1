@@ -480,6 +480,20 @@ public partial class Baja : System.Web.UI.Page
 
             string mensaje = "Item registrado con éxito.";
 
+            if (FileUpload1.HasFile)
+            {
+                try
+                {
+                    string path = Server.MapPath("~/Site/Activos/adjuntos_baja/") + Session["_codbarras"].ToString() + "_" + FileUpload1.FileName;
+                    string nombreok = "~/Site/Activos/adjuntos_baja/" + Session["_codbarras"].ToString() + "_" + FileUpload1.FileName;
+
+                    FileUpload1.SaveAs(Server.MapPath(nombreok));
+                }
+                catch (System.Exception ex)
+                {
+                    mensaje += " , </br> Documento no fue cargado: " + ex.Message;
+                }
+            }
             if (result)
             {
                 Logica.ACTIVO activo = Logica.ACTIVO.GetACTIVO(id);
@@ -497,20 +511,6 @@ public partial class Baja : System.Web.UI.Page
 
                 mensaje += " Item dado de Baja con éxito";
 
-                if (FileUpload1.HasFile)
-                {
-                    try
-                    {
-                        string path = Server.MapPath("~/Site/Activos/adjuntos_baja/") + Session["_codbarras"].ToString() + "_" + FileUpload1.FileName;
-                        string nombreok = "~/Site/Activos/adjuntos_baja/" + Session["_codbarras"].ToString() + "_" + FileUpload1.FileName;
-
-                        FileUpload1.SaveAs(Server.MapPath(nombreok));
-                    }
-                    catch (System.Exception ex)
-                    {
-                        mensaje += " , </br> Documento no fue cargado: " + ex.Message;
-                    }
-                }
                 mp2.Hide();
                 messbox1.Mensaje = mensaje;
                 messbox1.Tipo = "S";
@@ -534,12 +534,12 @@ public partial class Baja : System.Web.UI.Page
             }
 
 
-            else
-            {
-                messbox1.Mensaje = "No se pudo realizar la Baja";
-                messbox1.Tipo = "E";
-                messbox1.showMess();
-            }
+            //else
+            //{
+            //    messbox1.Mensaje = "No se pudo realizar la Baja";
+            //    messbox1.Tipo = "E";
+            //    messbox1.showMess();
+            //}
         }
         catch (Exception ex)
         {
