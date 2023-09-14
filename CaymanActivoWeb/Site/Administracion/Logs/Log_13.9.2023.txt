@@ -230,3 +230,147 @@ System.Web.UI.Page
  Void ProcessRequestMain(Boolean, Boolean)
 
 
+9/13/2023 8:24:42 PM ==> TrasladosMas
+ Void ibtrans_Click(System.Object, System.Web.UI.ImageClickEventArgs)
+ Usuario:cayman<< Uno o mas activos no se pudieron trasnferir 
+
+System.Web.UI.WebControls.ImageButton
+ Void OnClick(System.Web.UI.ImageClickEventArgs)
+System.Web.UI.WebControls.ImageButton
+ Void RaisePostBackEvent(System.String)
+System.Web.UI.Page
+ Void ProcessRequestMain(Boolean, Boolean)
+
+
+9/13/2023 8:32:43 PM ==> TrasladosMas
+ Void ibtrans_Click(System.Object, System.Web.UI.ImageClickEventArgs)
+ Usuario:cayman<< Uno o mas activos no se pudieron trasnferir 
+
+System.Web.UI.WebControls.ImageButton
+ Void OnClick(System.Web.UI.ImageClickEventArgs)
+System.Web.UI.WebControls.ImageButton
+ Void RaisePostBackEvent(System.String)
+System.Web.UI.Page
+ Void ProcessRequestMain(Boolean, Boolean)
+
+
+9/13/2023 8:38:26 PM ==> TrasladosMas
+ Void ibtrans_Click(System.Object, System.Web.UI.ImageClickEventArgs)
+ Usuario:cayman<< Uno o mas activos no se pudieron trasnferir 
+
+System.Web.UI.WebControls.ImageButton
+ Void OnClick(System.Web.UI.ImageClickEventArgs)
+System.Web.UI.WebControls.ImageButton
+ Void RaisePostBackEvent(System.String)
+System.Web.UI.Page
+ Void ProcessRequestMain(Boolean, Boolean)
+
+
+9/13/2023 8:44:37 PM ==> TrasladosMas
+ Void ibtrans_Click(System.Object, System.Web.UI.ImageClickEventArgs)
+ Usuario:cayman<< Uno o mas activos no se pudieron trasnferir 
+
+System.Web.UI.WebControls.ImageButton
+ Void OnClick(System.Web.UI.ImageClickEventArgs)
+System.Web.UI.WebControls.ImageButton
+ Void RaisePostBackEvent(System.String)
+System.Web.UI.Page
+ Void ProcessRequestMain(Boolean, Boolean)
+
+
+9/13/2023 8:58:30 PM ==> TrasladosMas
+ Void ibtrans_Click(System.Object, System.Web.UI.ImageClickEventArgs)
+ Usuario:cayman<< Uno o mas activos no se pudieron trasnferir 
+
+System.Web.UI.WebControls.ImageButton
+ Void OnClick(System.Web.UI.ImageClickEventArgs)
+System.Web.UI.WebControls.ImageButton
+ Void RaisePostBackEvent(System.String)
+System.Web.UI.Page
+ Void ProcessRequestMain(Boolean, Boolean)
+
+
+9/13/2023 9:03:03 PM ==> TrasladosMas
+ Void ibtrans_Click(System.Object, System.Web.UI.ImageClickEventArgs)
+ Usuario:cayman<< Uno o mas activos no se pudieron trasnferir 
+
+System.Web.UI.WebControls.ImageButton
+ Void OnClick(System.Web.UI.ImageClickEventArgs)
+System.Web.UI.WebControls.ImageButton
+ Void RaisePostBackEvent(System.String)
+System.Web.UI.Page
+ Void ProcessRequestMain(Boolean, Boolean)
+
+
+9/13/2023 9:17:11 PM ==> TrasladosMas
+ Void ibtrans_Click(System.Object, System.Web.UI.ImageClickEventArgs)
+ Usuario:cayman<< Uno o mas activos no se pudieron trasnferir 
+
+System.Web.UI.WebControls.ImageButton
+ Void OnClick(System.Web.UI.ImageClickEventArgs)
+System.Web.UI.WebControls.ImageButton
+ Void RaisePostBackEvent(System.String)
+System.Web.UI.Page
+ Void ProcessRequestMain(Boolean, Boolean)
+
+
+9/13/2023 9:22:51 PM ==> TrasladosMas
+ Void ibtrans_Click(System.Object, System.Web.UI.ImageClickEventArgs)
+ Usuario:cayman<< Uno o mas activos no se pudieron trasnferir 
+
+System.Web.UI.WebControls.ImageButton
+ Void OnClick(System.Web.UI.ImageClickEventArgs)
+System.Web.UI.WebControls.ImageButton
+ Void RaisePostBackEvent(System.String)
+System.Web.UI.Page
+ Void ProcessRequestMain(Boolean, Boolean)
+
+
+9/13/2023 9:31:14 PM ==> TrasladosMas
+ Void ibtrans_Click(System.Object, System.Web.UI.ImageClickEventArgs)
+ Usuario:cayman<< Uno o mas activos no se pudieron trasnferir 
+
+System.Web.UI.WebControls.ImageButton
+ Void OnClick(System.Web.UI.ImageClickEventArgs)
+System.Web.UI.WebControls.ImageButton
+ Void RaisePostBackEvent(System.String)
+System.Web.UI.Page
+ Void ProcessRequestMain(Boolean, Boolean)
+
+
+9/13/2023 9:54:40 PM ==> TrasladosMas
+ Void ibtrans_Click(System.Object, System.Web.UI.ImageClickEventArgs)
+ Usuario:cayman<< Uno o mas activos no se pudieron trasnferir 
+
+System.Web.UI.WebControls.ImageButton
+ Void OnClick(System.Web.UI.ImageClickEventArgs)
+System.Web.UI.WebControls.ImageButton
+ Void RaisePostBackEvent(System.String)
+System.Web.UI.Page
+ Void ProcessRequestMain(Boolean, Boolean)
+
+
+9/13/2023 10:02:36 PM ==> TrasladosMas
+ Void ibtrans_Click(System.Object, System.Web.UI.ImageClickEventArgs)
+ Usuario:cayman<< Uno o mas activos no se pudieron trasnferir 
+
+System.Web.UI.WebControls.ImageButton
+ Void OnClick(System.Web.UI.ImageClickEventArgs)
+System.Web.UI.WebControls.ImageButton
+ Void RaisePostBackEvent(System.String)
+System.Web.UI.Page
+ Void ProcessRequestMain(Boolean, Boolean)
+
+
+9/13/2023 10:12:33 PM ==> TrasladosMas
+ Void ibtrans_Click(System.Object, System.Web.UI.ImageClickEventArgs)
+ Usuario:cayman<< Uno o mas activos no se pudieron trasnferir 
+
+System.Web.UI.WebControls.ImageButton
+ Void OnClick(System.Web.UI.ImageClickEventArgs)
+System.Web.UI.WebControls.ImageButton
+ Void RaisePostBackEvent(System.String)
+System.Web.UI.Page
+ Void ProcessRequestMain(Boolean, Boolean)
+
+
