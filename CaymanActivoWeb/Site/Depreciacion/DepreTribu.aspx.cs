@@ -104,8 +104,8 @@ public partial class DepreTribu : System.Web.UI.Page
         }
         else
         {
-            ibbus1.Visible = false;
-            ddmeses.Enabled = false;
+            //ibbus1.Visible = false;
+            //ddmeses.Enabled = false;
         }
     }
 

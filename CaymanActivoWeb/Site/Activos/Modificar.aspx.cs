@@ -476,6 +476,8 @@ public partial class Site_Activos_Modificar : System.Web.UI.Page
                 act = new Logica.ACTIVO(txtbusid.Text.Trim(), tipo);
             else if (tipo == "id")
                 act = new Logica.ACTIVO(txtbusid.Text.Trim(), tipo);
+            else if (tipo == "cs1")
+                act = new Logica.ACTIVO(txtbussr.Text.Trim(), tipo);
 
             sse.ContextKey = act.Id.ToString();
 
@@ -1381,10 +1383,12 @@ public partial class Site_Activos_Modificar : System.Web.UI.Page
             lblmsg.Text = "";
             txtbuscb.Text = "";
 
-            if (Logica.HELPER.comprobarIdIngresado(txtbusid.Text.Trim()))
-            {
-                //cargar datos
-                if (Logica.Mantenimiento.verificaMantenimiento(txtbuscb.Text.Trim()))
+           // if (Logica.HELPER.comprobarIdIngresadoSerie(txtbusid.Text.Trim()))
+             if (Logica.HELPER.comprobarIdIngresadoSerie(txtbussr.Text.Trim()))
+
+                {
+                    //cargar datos
+                    if (Logica.Mantenimiento.verificaMantenimiento(txtbuscb.Text.Trim()))
                 {
                     panuevo.Visible = false;
                     messbox1.Mensaje = "El Activo actualmente esta en Mantenimiento, no se puede realizar ningun cambio, comuniquese con el Administrador...!!!";
@@ -1401,6 +1405,48 @@ public partial class Site_Activos_Modificar : System.Web.UI.Page
             {
                 panuevo.Visible = false;
                 messbox1.Mensaje = "No se encontró ningún item con Código = " + txtbusid.Text.Trim();
+                messbox1.Tipo = "I";
+                messbox1.showMess();
+            }
+        }
+        catch (Exception ex)
+        {
+            errtrap = new ErrorTrapper();
+            errtrap.SetOnError("Usuario:" + Membership.GetUser().UserName + "<< " + ex.Message, 0);
+            messbox1.Mensaje = "Error: " + ex.Message;
+            messbox1.Tipo = "E";
+            messbox1.showMess();
+        }
+    }
+    protected void ibbus4_Click(object sender, ImageClickEventArgs e)
+    {
+        try
+        {
+            lblmsg.Text = "";
+            txtbuscb.Text = "";
+
+            // if (Logica.HELPER.comprobarIdIngresadoSerie(txtbusid.Text.Trim()))
+            if (Logica.HELPER.comprobarIdIngresadoSerie(txtbussr.Text.Trim()))
+
+            {
+                //cargar datos
+                if (Logica.Mantenimiento.verificaMantenimiento(txtbussr.Text.Trim()))
+                {
+                    panuevo.Visible = false;
+                    messbox1.Mensaje = "El Activo actualmente esta en Mantenimiento, no se puede realizar ningun cambio, comuniquese con el Administrador...!!!";
+                    messbox1.Tipo = "W";
+                    messbox1.showMess();
+                }
+                else
+                {
+                    panuevo.Visible = true;
+                    cargarActivo("cs1");
+                }
+            }
+            else
+            {
+                panuevo.Visible = false;
+                messbox1.Mensaje = "No se encontró ningún item con Serie = " + txtbussr.Text.Trim();
                 messbox1.Tipo = "I";
                 messbox1.showMess();
             }

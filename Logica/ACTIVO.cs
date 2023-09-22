@@ -176,12 +176,17 @@ namespace Logica
             else if (campo == "cs")
             {
                 sql.AddParameter("@ACT_CODIGO1", SqlDbType.VarChar, cod);
-                reader = sql.ExecuteSqlReader("SELECT * FROM ACTIVO WHERE ACT_CODIGO1 = @ACT_CODIGO1");
+                reader = sql.ExecuteSqlReader("SELECT * FROM ACTIVO WHERE ACT_ID = @ACT_CODIGO1");
             }
             else if (campo == "id")
             {
                 sql.AddParameter("@ACT_ID", SqlDbType.Int, cod);
                 reader = sql.ExecuteSqlReader("SELECT * FROM ACTIVO WHERE ACT_ID = @ACT_ID");
+            }
+            else if (campo == "cs1")
+            {
+                sql.AddParameter("@ACT_SERIE1", SqlDbType.VarChar, cod);
+                reader = sql.ExecuteSqlReader("SELECT * FROM ACTIVO WHERE ACT_SERIE1 = @ACT_SERIE1");
             }
 
             if (reader.Read())

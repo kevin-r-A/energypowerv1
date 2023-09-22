@@ -120,6 +120,32 @@
                         </td>
                         <td>&nbsp;</td>
                     </tr>
+                    <tr>
+                        <td class="auto-style20">
+                            <h4>
+                                Código Serie:
+                            </h4>
+                        </td>
+                        <td class="auto-style22">
+                            <div class="form-group">
+                                <telerik:RadTextBox ID="txtbussr" runat="server" MaxLength="50" Width="150px" Height="25px" CssClass="form-control">
+                                    <%--<clientevents onkeypress="KeyPress" />--%>
+                                </telerik:RadTextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" Width="300px" runat="server" ControlToValidate="txtbussr" ErrorMessage="Ingrese Serie" ValidationGroup="3" ForeColor="#E91E63" Display="Dynamic" SetFocusOnError="true" Text="<img src='../../Img/warning.png' /> Ingrese Serie"></asp:RequiredFieldValidator>
+                            </div>
+                        </td>
+                        <td valign="top" class="auto-style21">
+                            <div class="form-group">
+                                <div class="botonBuscar">
+                                    <asp:ImageButton ID="ibbus4" runat="server" CssClass="relo" Height="25px"
+                                                     ImageUrl="~/Img/buscarblue.png" OnClick="ibbus4_Click" TabIndex="99"
+                                                     ToolTip="Buscar Serie" ValidationGroup="3" Width="25px" ImageAlign="Middle"/>
+                                    <span style="vertical-align: bottom">Buscar</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
                 </table>
             </td>
         </tr>

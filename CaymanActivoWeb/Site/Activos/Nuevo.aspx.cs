@@ -925,7 +925,7 @@ public partial class Site_Activos_Nuevo : System.Web.UI.Page
                                                 if ((ddtipo.SelectedValue == "Activo Fijo" || ddtipo.SelectedValue == "ACTIVO FIJO") && lblvidautil.Text != "0")
                                                 {
                                                     act.ACT_DEPRECIABLE = true;
-                                                    act.ACT_FECHAINIDEPRE = act.calcularFechaIniDepre(datefechacompra.SelectedDate.Value);
+                                                    act.ACT_FECHAINIDEPRE = act.calcularFechaIniDepre(dateInicioNiif.SelectedDate.Value);
                                                 }
                                                 else
                                                 {
@@ -1007,7 +1007,7 @@ public partial class Site_Activos_Nuevo : System.Web.UI.Page
                                                     new System.Globalization.CultureInfo("en-US"));
                                                 if (panNiif.Visible)
                                                 {
-                                                    DateTime fechaSeleccionada = datefechacompra.SelectedDate.Value;
+                                                    DateTime fechaSeleccionada = dateInicioNiif.SelectedDate.Value;
                                                     DateTime primerDiaDelSiguienteMes = fechaSeleccionada.AddMonths(1).Date;
                                                     primerDiaDelSiguienteMes = new DateTime(primerDiaDelSiguienteMes.Year, primerDiaDelSiguienteMes.Month, 1);
 

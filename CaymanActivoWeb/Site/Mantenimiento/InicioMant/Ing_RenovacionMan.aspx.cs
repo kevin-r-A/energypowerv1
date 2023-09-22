@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using Telerik.Web.UI;
 using System.Web.Security;
+using Logica;
 
 
 public partial class Ing_RenovacionMan : System.Web.UI.Page
@@ -135,22 +136,36 @@ public partial class Ing_RenovacionMan : System.Web.UI.Page
                     {
 
                         //cargar datos
+                        Datos.SqlService sql = new Datos.SqlService();
+                        Object estado_mantenimiento_preve = sql.ExecuteSqlObject("SELECT act_id FROM ACTIVO WHERE ACT_CODBARRAS='" + txtbuscb.Text.Trim() + "'and act_fechabaja is not null");
 
-                        dt = Logica.HELPER.getVerificaExisteMantRegistrado(txtbuscb.Text.Trim(), "", 1);
+                        if (estado_mantenimiento_preve != null)
 
-                        if (dt.Rows.Count > 0)
                         {
-                            messbox1.Mensaje = "No se puede Ingresar Mantenimiento ya fue Registrado...!!!";
+
+                            messbox1.Mensaje = "No se puede Enviar a Mantenimiento a un Bien Dado de Baja...!!!";
                             messbox1.Tipo = "W";
                             messbox1.showMess();
-                            Session["Mant"] = "si";
+
                         }
                         else
                         {
-                            CargarUbiGEOUOR("", "cb");
-                            pnl_Mantenimiento.Visible = true;
-                            Pan_UgeUor.Visible = true;
-                            chboxTipoMant.Items[0].Enabled = false;
+                            dt = Logica.HELPER.getVerificaExisteMantRegistrado(txtbuscb.Text.Trim(), "", 1);
+
+                            if (dt.Rows.Count > 0)
+                            {
+                                messbox1.Mensaje = "No se puede Ingresar Mantenimiento ya fue Registrado...!!!";
+                                messbox1.Tipo = "W";
+                                messbox1.showMess();
+                                Session["Mant"] = "si";
+                            }
+                            else
+                            {
+                                CargarUbiGEOUOR("", "cb");
+                                pnl_Mantenimiento.Visible = true;
+                                Pan_UgeUor.Visible = true;
+                                chboxTipoMant.Items[0].Enabled = false;
+                            }
                         }
                     }
                     else
@@ -405,7 +420,7 @@ public partial class Ing_RenovacionMan : System.Web.UI.Page
             string MAN_PORMESES = "";
             int MAN_COBERTURA = 0;
             string MAN_MODALIDAD = "";
-
+            DateTime MAN_FECHAINICIA = new DateTime(1900, 01, 01);
             MAN_FORMA = ddFormaMant.SelectedValue;
 
             if (chboxTipoMant.Items[0].Selected == true)
@@ -423,7 +438,7 @@ public partial class Ing_RenovacionMan : System.Web.UI.Page
                 MAN_FECHAPROXINI = rdpFechaMant.SelectedDate.Value;
 
                 MAN_FECHAPROXFIN = F_CalculaFechaMant(rdpFechaMant.SelectedDate.Value);
-
+                MAN_FECHAINICIA = MAN_FECHAPROXINI;
                 MAN_PORMESES = rblPorMeses.SelectedValue;
             }
             else
@@ -466,7 +481,9 @@ public partial class Ing_RenovacionMan : System.Web.UI.Page
                          MAN_PORMESES,
                          "A",
                          MAN_FECHAPROXFIN,
-                         fechamantreal
+                         fechamantreal,
+                         5,
+                         MAN_FECHAINICIA
                          );
 
             guardar = true;

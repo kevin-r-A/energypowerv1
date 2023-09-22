@@ -140,7 +140,19 @@ namespace Logica
                 return false;
             }
         }
-
+        public static bool itemDadoDeBajaSR(string ide)
+        {
+            Datos.SqlService sql = new Datos.SqlService();
+            Object obj = sql.ExecuteSqlObject("select act_id from activo where ACT_SERIE1='" + ide + "' and act_fechabaja is not null");
+            if (obj != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public static bool comprobarIdIngresadoLogikard(string ide)
         {
             Datos.SqlService sql = new Datos.SqlService();
@@ -1163,10 +1175,10 @@ namespace Logica
         }
 
         public static void insMantenimiento(string MAN_DESCRIPCION, int TIP_ID_CORRECTIVO, int TIP_ID_PREVENTIVO, string USERNAME, DateTime MAN_FECHA,
-           int ACT_ID, int MAN_REALIZADO, DateTime MAN_FECHAPROXINI, double MAN_VALOR, string MAN_NUMDOC, string MAN_FORMA, int MAN_COBERTURA,
-           string MAN_MODALIDAD, string MAN_PORMESES, string MAN_ESTADO, DateTime MAN_FECHAPROXFIN, DateTime MAN_FECHAREALMANT, string ACT_ESTADOMANT,
-            DateTime ACT_FECHAENVIOMANT, DateTime ACT_FECHAREGRESOMANT
-           )
+            int ACT_ID, int MAN_REALIZADO, DateTime MAN_FECHAPROXINI, double MAN_VALOR, string MAN_NUMDOC, string MAN_FORMA, int MAN_COBERTURA,
+            string MAN_MODALIDAD, string MAN_PORMESES, string MAN_ESTADO, DateTime MAN_FECHAPROXFIN, DateTime MAN_FECHAREALMANT, string ACT_ESTADOMANT,
+             DateTime ACT_FECHAENVIOMANT, DateTime ACT_FECHAREGRESOMANT, DateTime MAN_FECHAINICIA
+            )
         {
 
             Datos.SqlService sql = new Datos.SqlService();
@@ -1266,6 +1278,7 @@ namespace Logica
             //{
             sql.AddParameter("@ACT_FECHAREGRESOMANT", SqlDbType.SmallDateTime, ACT_FECHAREGRESOMANT);
             //}
+            sql.AddParameter("@MAN_FECHAINICIA", SqlDbType.SmallDateTime, MAN_FECHAINICIA);
 
 
             sql.AddParameter("@err", SqlDbType.VarChar, "", 350, ParameterDirection.Output);
@@ -1275,7 +1288,7 @@ namespace Logica
 
         public static void insMantenimientoIniPrevent(string MAN_DESCRIPCION, int TIP_ID_CORRECTIVO, int TIP_ID_PREVENTIVO, string USERNAME, DateTime MAN_FECHA,
            int ACT_ID, int MAN_REALIZADO, DateTime MAN_FECHAPROXINI, double MAN_VALOR, string MAN_NUMDOC, string MAN_FORMA, int MAN_COBERTURA,
-           string MAN_MODALIDAD, string MAN_PORMESES, string MAN_ESTADO, DateTime MAN_FECHAPROXFIN, DateTime MAN_FECHAREALMANT
+           string MAN_MODALIDAD, string MAN_PORMESES, string MAN_ESTADO, DateTime MAN_FECHAPROXFIN, DateTime MAN_FECHAREALMANT, int ACT_DIASAVISOMANTPREVENTIVO, DateTime MAN_FECHAINICIA
            )
         {
 
@@ -1312,12 +1325,13 @@ namespace Logica
             sql.AddParameter("@MAN_PORMESES", SqlDbType.VarChar, MAN_PORMESES);
             //}
             sql.AddParameter("@MAN_ESTADO", SqlDbType.VarChar, MAN_ESTADO);
+            sql.AddParameter("@ACT_DIASAVISOMANTPREVENTIVO", SqlDbType.Int, ACT_DIASAVISOMANTPREVENTIVO);
+            sql.AddParameter("@MAN_FECHAINICIA", SqlDbType.SmallDateTime, MAN_FECHAINICIA);
 
 
             sql.AddParameter("@err", SqlDbType.VarChar, "", 350, ParameterDirection.Output);
             sql.ExecuteSP("MANTENIMIENTOPI02");
         }
-
         public static string VerificaDepreciaciones(int cod, string msg)
         {
             Datos.SqlService sql = new Datos.SqlService();

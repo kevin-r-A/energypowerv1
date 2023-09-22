@@ -406,6 +406,33 @@
                                              Width="35px" onclick="ibbus3_Click"/>
                         </td>
                     </tr>
+                     <tr>
+                        <td class="auto-style4">
+                            <h4>Serie:</h4>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                                                        ControlToValidate="txtbuss" ErrorMessage="Ingrese serie" ForeColor="Red"
+                                                        ValidationGroup="3">
+                                *
+                            </asp:RequiredFieldValidator>
+                            <asp:ValidatorCalloutExtender ID="ValidatorCalloutExtender1" runat="server"
+                                                          Enabled="True" TargetControlID="rfv2" PopupPosition="BottomRight" WarningIconImageUrl="~/Img/warning.png">
+                            </asp:ValidatorCalloutExtender>
+
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <telerik:RadTextBox ID="txtbuss" runat="server" MaxLength="20" Width="150px" Height="25px" CssClass="form-control">
+                                    <%--<ClientEvents OnKeyPress="KeyPress" />--%>
+                                    <EmptyMessageStyle Font-Italic="True"/>
+                                </telerik:RadTextBox>
+                            </div>
+                        </td>
+                        <td valign="top">
+                            <asp:ImageButton ID="ImageButton1" runat="server" Height="35px"
+                                             ImageUrl="~/Img/buscarblue.png" TabIndex="99" ToolTip="Buscar Serie" ValidationGroup="3"
+                                             Width="35px" onclick="ibbus4_Click"/>
+                        </td>
+                    </tr>
                     <tr>
                         <td class="auto-style4">
                             &nbsp;

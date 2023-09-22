@@ -225,8 +225,8 @@ public partial class Baja : System.Web.UI.Page
             string query = "";
             if (tipo == "cb")
                 query = " and act_codbarras='" + cod + "'";
-            else
-                query = " and act_codigo1='" + cod + "'";
+            else if (tipo == "cs")
+                query = " and act_serie1='" + cod + "'";
 
             rgbaja.DataSource = Logica.HELPER.getReporteTotalX(query);
             rgbaja.DataBind();
@@ -290,6 +290,62 @@ public partial class Baja : System.Web.UI.Page
             else
             {
                 messbox1.Mensaje = "El item con Código = " + txtbusid.Text.Trim() + " ya fue dado de baja anterioremente...";
+                messbox1.Tipo = "I";
+                messbox1.showMess();
+            }
+
+            //}
+            //else
+            //{
+            //    pantras.Visible = false;
+            //    messbox1.Mensaje = "No se encontró ningún item con Id = " + txtbusid.Text.Trim();
+            //    messbox1.Tipo = "I";
+            //    messbox1.showMess();
+            //    rgbaja.DataSource = null;
+            //    rgbaja.DataBind();
+            //}
+        }
+        catch (Exception ex)
+        {
+            errtrap = new ErrorTrapper();
+            errtrap.SetOnError("Usuario:" + Membership.GetUser().UserName + "<< " + ex.Message, 0);
+            messbox1.Mensaje = "Error: " + ex.Message;
+            messbox1.Tipo = "E";
+            messbox1.showMess();
+        }
+    }
+    protected void ibbus4_Click(object sender, ImageClickEventArgs e)
+    {
+        rghijos.DataSource = null;
+        rghijos.DataBind();
+        panhijos.Visible = false;
+
+        try
+        {
+            txtbuscb.Text = "";
+
+
+            //if (Logica.HELPER.comprobarIdIngresado(txtbusid.Text.Trim()))
+            //{
+            if (!Logica.HELPER.itemDadoDeBajaSR(txtbuss.Text.Trim()))
+            {
+                if (Logica.Mantenimiento.verificaMantenimientoSerie(txtbuss.Text.Trim()))
+                {
+                    panGrid.Visible = false;
+                    messbox1.Mensaje = "El Activo actualmente esta en Mantenimiento, no se puede realizar ningun cambio, comuniquese con el Administrador...!!!";
+                    messbox1.Tipo = "W";
+                    messbox1.showMess();
+                }
+                else
+                {
+                    //cargar datos
+                    panGrid.Visible = true;
+                    cargarActivo(txtbusid.Text, "cs1");
+                }
+            }
+            else
+            {
+                messbox1.Mensaje = "El item con Código = " + txtbuss.Text.Trim() + " ya fue dado de baja anterioremente...";
                 messbox1.Tipo = "I";
                 messbox1.showMess();
             }

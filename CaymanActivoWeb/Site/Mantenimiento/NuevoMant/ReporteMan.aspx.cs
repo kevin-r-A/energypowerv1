@@ -163,8 +163,12 @@ public partial class ReporteMan : System.Web.UI.Page
                             //cargar datos
 
                             CargarUbiGEOUOR(txtbuscb.Text.Trim(), 1);
+                            int actividadId = int.Parse(lblid.Text.Trim());
+                            Datos.SqlService sql = new Datos.SqlService();
+                            Object estado_mantenimiento_preve = sql.ExecuteSqlObject("SELECT man_estado FROM MANTENIMIENTO WHERE ACT_ID ='" + actividadId + "' AND TIP_ID_PREVENTIVO = 2  AND MAN_FECHAPROXINI = (SELECT MAX(MAN_FECHAPROXINI) FROM MANTENIMIENTO WHERE ACT_ID = '" + actividadId + "' AND TIP_ID_PREVENTIVO = 2 )");
 
                             if (Logica.HELPER.VerificaDepreciaciones(int.Parse(lblid.Text.Trim()), "") == "iok")
+
                             {
 
                                 messbox1.Mensaje = "No se puede Enviar a Mantenimiento a un Bien Dado de Baja...!!!";
@@ -181,11 +185,20 @@ public partial class ReporteMan : System.Web.UI.Page
 
                             else
                             {
-                                CargarUltimoMantenimiento(lblid.Text.Trim());
+                                if (estado_mantenimiento_preve != null && estado_mantenimiento_preve.ToString() == "F")
+                                {
+                                    cargarActivo(txtbuscb.Text, "1");
 
-                                cargarActivo(txtbuscb.Text, "1");
+                                    panDatosActa.Visible = false;
+                                }
+                                else
+                                {
+                                    CargarUltimoMantenimiento(lblid.Text.Trim());
 
-                                panDatosActa.Visible = false;
+                                    cargarActivo(txtbuscb.Text, "1");
+
+                                    panDatosActa.Visible = false;
+                                }
                             }
                         }
 
@@ -287,7 +300,7 @@ public partial class ReporteMan : System.Web.UI.Page
 
         sql.AddParameter("@codigo", SqlDbType.Int, int.Parse(lblid.Text.Trim()));
         dt = sql.ExecuteSPDataTable("ArranqueMantCorrectivo");
-
+        string fecha_inicia = lblFechaIniMant.Text;
         double valormant = 0;
 
         if (txtvalorMant.Text != "")
@@ -312,6 +325,10 @@ public partial class ReporteMan : System.Web.UI.Page
             if (man_cobertura == "" || man_cobertura == null)
             {
                 man_cobertura = "0";
+            }
+            if (fecha_inicia == "" || fecha_inicia == null)
+            {
+                fecha_inicia = "01/01/0001";
             }
             string man_modalidad = dt.Rows[0][13].ToString();
             string man_pormeses = dt.Rows[0][14].ToString();
@@ -352,7 +369,8 @@ public partial class ReporteMan : System.Web.UI.Page
                                                Convert.ToDateTime(man_fecharealmant),
                                                "M",
                                                Convert.ToDateTime(dp_FechaRealizacion.Text.Trim()),
-                                               Convert.ToDateTime(dp_FechaReIngreso.Text.Trim()));
+                                               Convert.ToDateTime(dp_FechaReIngreso.Text.Trim()),
+                                               Convert.ToDateTime(fecha_inicia));
 
                 F_EnviaHistoricoMovimientos("MC");
 
@@ -396,7 +414,9 @@ public partial class ReporteMan : System.Web.UI.Page
                                                Convert.ToDateTime("01/01/0001"),
                                                "M",
                                                Convert.ToDateTime(dp_FechaRealizacion.Text.Trim()),
-                                               Convert.ToDateTime(dp_FechaReIngreso.Text.Trim()));
+                                               Convert.ToDateTime(dp_FechaReIngreso.Text.Trim()),
+                                               Convert.ToDateTime(fecha_inicia)
+                                               );
 
                 F_EnviaHistoricoMovimientos("MC");
 
@@ -453,6 +473,8 @@ public partial class ReporteMan : System.Web.UI.Page
                     string tip_id_preventivo = dt.Rows[0][3].ToString();
                     string man_fecha = dt.Rows[0][5].ToString();
                     string man_fechaproxini = lblFechaFinMant.Text;
+                    string fecha_inicia = lblFechaIniMant.Text;
+                    DateTime MAN_FECHAINICIA = Convert.ToDateTime((fecha_inicia));
                     if (man_fechaproxini == "" || man_fechaproxini == null)
                     {
                         man_fechaproxini = "01/01/0001";
@@ -517,7 +539,9 @@ public partial class ReporteMan : System.Web.UI.Page
                                                        Convert.ToDateTime(man_fecharealmant),
                                                        "M",
                                                        act_fechaenviomant,
-                                                       act_fecharegresomant);
+                                                       act_fecharegresomant,
+                                                       MAN_FECHAINICIA
+                                                       );
 
                         F_EnviaHistoricoMovimientos("MP");
 
@@ -853,6 +877,7 @@ public partial class ReporteMan : System.Web.UI.Page
 
             DateTime fechaenviomant = new DateTime();
             DateTime fecharegresomant = new DateTime();
+            DateTime MAN_FECHAINICIA = new DateTime(1900, 01, 01);
 
             string estadoMantenimiento = "";
 
@@ -884,7 +909,7 @@ public partial class ReporteMan : System.Web.UI.Page
                 fechaenviomant = Convert.ToDateTime(dp_FechaRealizacion.Text.Trim());
                 fecharegresomant = Convert.ToDateTime(dp_FechaReIngreso.Text.Trim());
 
-
+                MAN_FECHAINICIA = Convert.ToDateTime(lblFechaIniMant.Text.Trim());
                 fechamantreal = Convert.ToDateTime(Session["fecharealmant"].ToString());
 
 
@@ -954,7 +979,8 @@ public partial class ReporteMan : System.Web.UI.Page
                              fechamantreal,
                              estadoMantenimiento,
                              fechaenviomant,
-                             fecharegresomant
+                             fecharegresomant,
+                             MAN_FECHAINICIA
                              );
 
                 if (chboxTipoMant.Items[0].Selected == true)
@@ -1103,7 +1129,7 @@ public partial class ReporteMan : System.Web.UI.Page
         string folderToBrowse = Server.MapPath("./PDF/");
         DirectoryInfo DirInfo = new DirectoryInfo(folderToBrowse);
         FileSystemInfo[] files = DirInfo.GetFileSystemInfos("*.PDF");
-        Array.Sort<FileSystemInfo>(files, delegate(FileSystemInfo a, FileSystemInfo b) { return a.LastWriteTime.CompareTo(b.LastWriteTime); });
+        Array.Sort<FileSystemInfo>(files, delegate (FileSystemInfo a, FileSystemInfo b) { return a.LastWriteTime.CompareTo(b.LastWriteTime); });
 
         DataGrid dt = new DataGrid();
 
