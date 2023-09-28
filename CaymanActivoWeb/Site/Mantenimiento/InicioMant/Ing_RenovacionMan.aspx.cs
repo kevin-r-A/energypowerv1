@@ -217,21 +217,36 @@ public partial class Ing_RenovacionMan : System.Web.UI.Page
 
             if (Logica.HELPER.VerificaTipoBienSerie(txtbusid.Text.Trim()))
             {
-                dt = Logica.HELPER.getVerificaExisteMantRegistrado("", txtbusid.Text.Trim(), 2);
+                Datos.SqlService sql = new Datos.SqlService();
+                Object estado_mantenimiento_preve = sql.ExecuteSqlObject("SELECT act_id FROM ACTIVO WHERE act_serie1='" + txtbusid.Text.Trim() + "'and act_fechabaja is not null");
 
-                if (dt.Rows.Count > 0)
+                if (estado_mantenimiento_preve != null)
+
                 {
-                    messbox1.Mensaje = "No se puede Ingresar Mantenimiento ya fue Registrado...!!!";
+
+                    messbox1.Mensaje = "No se puede Enviar a Mantenimiento a un Bien Dado de Baja...!!!";
                     messbox1.Tipo = "W";
                     messbox1.showMess();
-                    Session["Mant"] = "si";
+
                 }
                 else
                 {
-                    CargarUbiGEOUOR("", "s");
-                    pnl_Mantenimiento.Visible = true;
-                    Pan_UgeUor.Visible = true;
-                    chboxTipoMant.Items[0].Enabled = false;
+                    dt = Logica.HELPER.getVerificaExisteMantRegistrado("", txtbusid.Text.Trim(), 2);
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        messbox1.Mensaje = "No se puede Ingresar Mantenimiento ya fue Registrado...!!!";
+                        messbox1.Tipo = "W";
+                        messbox1.showMess();
+                        Session["Mant"] = "si";
+                    }
+                    else
+                    {
+                        CargarUbiGEOUOR("", "s");
+                        pnl_Mantenimiento.Visible = true;
+                        Pan_UgeUor.Visible = true;
+                        chboxTipoMant.Items[0].Enabled = false;
+                    }
                 }
             }
             else
@@ -244,7 +259,8 @@ public partial class Ing_RenovacionMan : System.Web.UI.Page
                 Pan_UgeUor.Visible = false;
 
             }
-        }
+            }
+        
         catch (Exception ex)
         {
             errtrap = new ErrorTrapper();

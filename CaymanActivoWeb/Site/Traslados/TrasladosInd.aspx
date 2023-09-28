@@ -145,6 +145,38 @@
                                              ToolTip="Buscar Cod Secundario" ValidationGroup="2" Width="35px"/>
                         </td>
                     </tr>
+                     <tr>
+                        <td class="auto-style15">
+                            <h4>
+                                Serie:
+                                <asp:ValidatorCalloutExtender ID="rfv3_ValidatorCalloutExtender0" runat="server"
+                                                              Enabled="True" TargetControlID="rfv3" PopupPosition="BottomRight" WarningIconImageUrl="~/Img/warning.png">
+                                </asp:ValidatorCalloutExtender>
+                                <asp:RequiredFieldValidator ID="rfv3" runat="server"
+                                                            ControlToValidate="txtbuss" ErrorMessage="Ingrese Serie" ForeColor="Red"
+                                                            ValidationGroup="3">
+                                    *
+                                </asp:RequiredFieldValidator>
+                                <asp:ValidatorCalloutExtender ID="rfv3_ValidatorCalloutExtender" runat="server"
+                                                              Enabled="True" PopupPosition="BottomRight" TargetControlID="rfv3" WarningIconImageUrl="~/Img/warning.png">
+                                </asp:ValidatorCalloutExtender>
+                            </h4>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <telerik:RadTextBox ID="txtbuss" runat="server" MaxLength="150" Width="150px" Height="25px" CssClass="form-control">
+
+                                    <%--<ClientEvents OnKeyPress="KeyPress" />--%>
+                                    <EmptyMessageStyle Font-Italic="True"/>
+                                </telerik:RadTextBox>
+                            </div>
+                        </td>
+                        <td valign="top">
+                            <asp:ImageButton ID="ibbus4" runat="server" CssClass="relo" Height="35px"
+                                             ImageUrl="~/Img/buscarblue.png" OnClick="ibbus4_Click" TabIndex="99"
+                                             ToolTip="Serie" ValidationGroup="3" Width="35px"/>
+                        </td>
+                    </tr>
                 </table>
             </td>
         </tr>

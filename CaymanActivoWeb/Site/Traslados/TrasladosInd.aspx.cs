@@ -177,6 +177,7 @@ public partial class TrasladosInd : System.Web.UI.Page
         try
         {
             txtbuscb.Text = "";
+            txtbuss.Text = "";
 
             if (Logica.HELPER.comprobarCodLogikard(txtbusid.Text.Trim()))
             {
@@ -211,10 +212,50 @@ public partial class TrasladosInd : System.Web.UI.Page
             messbox1.showMess();
         }
     }
+    protected void ibbus4_Click(object sender, ImageClickEventArgs e)
+    {
+        try
+        {
+            txtbuscb.Text = "";
+            txtbusid.Text = "";
 
+            if (Logica.HELPER.comprobarIdIngresadoSerie(txtbuss.Text.Trim()))
+            {
+                if (Logica.Mantenimiento.verificaMantenimiento(txtbuss.Text.Trim()))
+                {
+                    panuevo.Visible = false;
+                    messbox1.Mensaje = "El Activo actualmente esta en Mantenimiento, no se puede realizar ningun cambio, comuniquese con el Administrador...!!!";
+                    messbox1.Tipo = "W";
+                    messbox1.showMess();
+                }
+                else
+                {
+                    //cargar datos
+                    panuevo.Visible = true;
+                    cargarActivo("cs1");
+                }
+            }
+            else
+            {
+                panuevo.Visible = false;
+                messbox1.Mensaje = "No se encontró ningún item con Serie = " + txtbuss.Text.Trim();
+                messbox1.Tipo = "I";
+                messbox1.showMess();
+            }
+        }
+        catch (Exception ex)
+        {
+            errtrap = new ErrorTrapper();
+            errtrap.SetOnError("Usuario:" + Membership.GetUser().UserName + "<< " + ex.Message, 0); //1 enviar mail
+            messbox1.Mensaje = "Error: " + ex.Message;
+            messbox1.Tipo = "E";
+            messbox1.showMess();
+        }
+    }
     protected void ibbus1_Click(object sender, ImageClickEventArgs e)
     {
         txtbusid.Text = "";
+        txtbuss.Text = "";
         if (Logica.Mantenimiento.verificaMantenimiento(txtbuscb.Text.Trim()))
         {
             panuevo.Visible = false;
@@ -286,7 +327,8 @@ public partial class TrasladosInd : System.Web.UI.Page
                 act = new Logica.ACTIVO(txtbuscb.Text.Trim(), tipo);
             else if (tipo == "cs")
                 act = new Logica.ACTIVO(txtbusid.Text.Trim(), tipo);
-
+            else if (tipo == "cs1")
+                act = new Logica.ACTIVO(txtbuss.Text.Trim(), tipo);
             _act = act;
 
             //si el activo no ha sido dado de baja act_fechabaja=null=01/01/0001

@@ -226,8 +226,9 @@ public partial class Baja : System.Web.UI.Page
             if (tipo == "cb")
                 query = " and act_codbarras='" + cod + "'";
             else if (tipo == "cs")
+                query = " and act_codigo1='" + cod + "'";
+            else if (tipo == "cs1")
                 query = " and act_serie1='" + cod + "'";
-
             rgbaja.DataSource = Logica.HELPER.getReporteTotalX(query);
             rgbaja.DataBind();
             //uprepo1.Update();
@@ -340,7 +341,7 @@ public partial class Baja : System.Web.UI.Page
                 {
                     //cargar datos
                     panGrid.Visible = true;
-                    cargarActivo(txtbusid.Text, "cs1");
+                    cargarActivo(txtbuss.Text, "cs1");
                 }
             }
             else
