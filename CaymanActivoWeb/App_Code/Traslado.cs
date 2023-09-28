@@ -58,32 +58,38 @@ namespace CustomEditors
             {
                 List<string> actIds = new List<string>();
                 List<string> cusIds = new List<string>();
-                List<string> ubigeo = new List<string>();
-                List<string> ubiorg = new List<string>();
-
+                //List<string> ubigeo = new List<string>();
+                //List<string> ubiorg = new List<string>();
+                var ubigeo = antiguosActivos.Rows[0]["UGE_ID1"] + ";" +
+                            antiguosActivos.Rows[0]["UGE_ID2"] + ";" +
+                            antiguosActivos.Rows[0]["UGE_ID3"] + ";" +
+                            antiguosActivos.Rows[0]["UGE_ID4"];
+                var ubiorg = antiguosActivos.Rows[0]["UOR_ID1"] + ";" +
+                             antiguosActivos.Rows[0]["UOR_ID2"] + ";" +
+                             antiguosActivos.Rows[0]["UOR_ID3"];
                 foreach (DataRow antiguosActivosRow in antiguosActivos.Rows)
                 {
                     actIds.Add(antiguosActivosRow["ACT_ID"].ToString());
                     cusIds.Add(antiguosActivosRow["CUS_ID1"].ToString());
 
-                    string ugeIdConcatenado = string.Format("{0};{1};{2};{3}",
-                     antiguosActivosRow["UGE_ID1"],
-                     antiguosActivosRow["UGE_ID2"],
-                     antiguosActivosRow["UGE_ID3"],
-                     antiguosActivosRow["UGE_ID4"]);
-                                ubigeo.Add(ugeIdConcatenado);
+                    //string ugeIdConcatenado = string.Format("{0};{1};{2};{3}",
+                    // antiguosActivosRow["UGE_ID1"],
+                    // antiguosActivosRow["UGE_ID2"],
+                    // antiguosActivosRow["UGE_ID3"],
+                    // antiguosActivosRow["UGE_ID4"]);
+                    //            ubigeo.Add(ugeIdConcatenado);
 
-                    // Concatenar valores de UOR_ID y agregar a ubiorg
-                    string uorIdConcatenado = string.Format("{0};{1};{2}",
-                        antiguosActivosRow["UOR_ID1"],
-                        antiguosActivosRow["UOR_ID2"],
-                        antiguosActivosRow["UOR_ID3"]);
-                    ubiorg.Add(uorIdConcatenado);
+                    //// Concatenar valores de UOR_ID y agregar a ubiorg
+                    //string uorIdConcatenado = string.Format("{0};{1};{2}",
+                    //    antiguosActivosRow["UOR_ID1"],
+                    //    antiguosActivosRow["UOR_ID2"],
+                    //    antiguosActivosRow["UOR_ID3"]);
+                    //ubiorg.Add(uorIdConcatenado);
                 }
 
                 CrearPdfMasivo(guid, Server, 0, actIds.ToArray(), cusIds.ToArray(), nuevosActivos.Rows[0]["CUS_ID1"].ToString(),
-                    nuevosActivos.Rows[0]["UOR_ID2"].ToString(), "Acta Entrega TM - ", nuevosActivos.Rows[0]["UGE_ID1"].ToString(), nuevosActivos.Rows[0]["UGE_ID2"].ToString(),
-                    nuevosActivos.Rows[0]["UGE_ID3"].ToString(), nuevosActivos.Rows[0]["UOR_ID2"].ToString(), fecha,ubigeo.ToArray(), ubiorg.ToArray());
+                    nuevosActivos.Rows[0]["UOR_ID1"].ToString(), "Acta Entrega TM - ", nuevosActivos.Rows[0]["UGE_ID1"].ToString(), nuevosActivos.Rows[0]["UGE_ID2"].ToString(),
+                    nuevosActivos.Rows[0]["UGE_ID3"].ToString(), nuevosActivos.Rows[0]["UOR_ID2"].ToString(), fecha,ubigeo, ubiorg);
             }
         }
 
@@ -377,23 +383,25 @@ namespace CustomEditors
             }
         }
         private void CrearPdfMasivo(Guid guid, HttpServerUtility Server, int contadort, string[] actId, string[] custodio, string newCus, string NuevaCiu, string nombre,
-            string uge1, string uge2, string uge3, string uor2, string fecha, string[] ubigeo, string[] ubiorg)
+            string uge1, string uge2, string uge3, string uor2, string fecha, string ubigeo, string ubiorg)
         {
             try
             {
                 int numPDF = F_TotalPDF(Server) + 1;
                 string PDFnum = F_llenaceros(Convert.ToString(numPDF), 5, "0");
-
+                    
                 //2012-02-15_Andrea.- Llamar para crear PDF
+                string[] ubigeoValores = ubigeo.Split(';');
+                string[] ubiorgValores = ubiorg.Split(';');
 
                 Datos.SqlService sql1 = new Datos.SqlService();
                 Object AreaActivos = Membership.GetUser().UserName.ToString();
                 Object NuevoCus = sql1.ExecuteSqlObject("select (cus_nombres +' '+ CUS_apellidos) from CUSTODIO where cus_id='" + newCus + "'");
-                Object NewCiu = sql1.ExecuteSqlObject("select uge_nombre from ugeografica where uge_id='" + ubigeo[1] + "'");
+                //Object NewCiu = sql1.ExecuteSqlObject("select uge_nombre from ugeografica where uge_id='" + NuevaCiu + "'");
                 Object ddUge11 = sql1.ExecuteSqlObject("select uge_nombre from ugeografica where uge_id='" + uge1 + "'");
                 Object ddUge22 = sql1.ExecuteSqlObject("select uge_nombre from ugeografica where uge_id='" + uge2 + "'");
                 Object ddUge33 = sql1.ExecuteSqlObject("select uge_nombre from ugeografica where uge_id='" + uge3 + "'");
-                Object ddUor22 = sql1.ExecuteSqlObject("select UOR_NOMBRE from UORGANICA where uge_id='" + ubiorg[0] + "'");
+                Object ddUor22 = sql1.ExecuteSqlObject("select UOR_NOMBRE from UORGANICA where uor_id='" + NuevaCiu + "'");
                 string TituloReporte = ConfigurationManager.AppSettings["TituloReportes"].ToString();
 
                 if (NuevoCus != null)
@@ -497,7 +505,7 @@ namespace CustomEditors
                 document.Add(P4);
 
                 Paragraph P5 = new Paragraph(
-                    "En la ciudad de " + NewCiu.ToString() + ", los suscritos señor(a) " + Anterior_Cus + " , quien entrega los bien(es), al(la) señor(a) " +
+                    "En la ciudad de " + ddUge11 + ", los suscritos señor(a) " + Anterior_Cus + " , quien entrega los bien(es), al(la) señor(a) " +
                     NuevoCus.ToString() + "  quien  recibe los bien(es), nos constituimos en las oficinas administrativas de " + ddUor22 +
                     ", ubicada en " +
                     ddUge11 + "/" + ddUge22 + "/" + ddUge33 +
