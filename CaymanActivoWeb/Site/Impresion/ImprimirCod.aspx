@@ -30,7 +30,7 @@
                                 <h5>Tipo de Código de Barras:</h5></td>
                             <td>
                                 <asp:DropDownList ID="DropDownList1" runat="server" CssClass="txtdd" Width="20%">
-                                    <asp:ListItem Selected="True" Value="N">Normal (5.7 x 1.9 cm)</asp:ListItem>
+                                    <asp:ListItem Selected="True" Value="N">Normal (5 x 2.5 cm)</asp:ListItem>
                                 </asp:DropDownList>
                             </td>
                         </tr>

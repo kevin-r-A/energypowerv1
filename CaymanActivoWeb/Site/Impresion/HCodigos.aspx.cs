@@ -18,6 +18,10 @@ using System.Drawing;
 using System.Web.UI.HtmlControls;
 using iTextSharp;
 using iTextSharp.text.pdf;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using OfficeOpenXml.Table;
+using System.Data.Entity;
 
 public partial class HCodigos : System.Web.UI.Page
 {
@@ -48,6 +52,7 @@ public partial class HCodigos : System.Web.UI.Page
     {
         try
         {
+           
             rgdepre.ExportSettings.FileName = "CodigosGenerados_" + DateTime.Now.ToShortDateString().Replace('/', '_');
             foreach (GridItem commandItem in this.rgdepre.MasterTableView.GetItems(GridItemType.CommandItem))
             {
@@ -64,4 +69,6 @@ public partial class HCodigos : System.Web.UI.Page
             messbox1.showMess();
         }
     }
+
+    
 }

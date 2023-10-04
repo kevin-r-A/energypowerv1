@@ -10,8 +10,11 @@ using System.ComponentModel;
 using System.IO;
 using System.Web.Security;
 using System.Configuration;
-
-
+using System.Windows.Forms;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using OfficeOpenXml.Table;
+using System.Data.Entity;
 public partial class Site_Activos_ImprimirCod : System.Web.UI.Page
 {
     ErrorTrapper errtrap;
@@ -194,7 +197,7 @@ public partial class Site_Activos_ImprimirCod : System.Web.UI.Page
                  if(i==0)
                      cod1 = codigo;
                 
-                Print(lblEmpresa.Text.ToUpper(),codigo);
+                //Print(lblEmpresa.Text.ToUpper(),codigo);
 
                 Logica.HELPER.insCodImpreso(sigCod,codigo.Substring(13, 1),Session["empr"].ToString(),codigo.Substring(7, 7),Session["emid"].ToString());
 
@@ -225,7 +228,8 @@ public partial class Site_Activos_ImprimirCod : System.Web.UI.Page
             Logica.HELPER.insHCodImpreso(Membership.GetUser().UserName.ToLower(), DropDownList1.SelectedItem.ToString(), cod1, cod2, nveces.ToString());
         }
 
-        cargarHistorial();
+            excelautomatico(txtultimocod.Text);
+            cargarHistorial();
         txtultimocod.Text = Logica.HELPER.getUltCodimpr();
             
 
@@ -237,6 +241,38 @@ public partial class Site_Activos_ImprimirCod : System.Web.UI.Page
             messbox1.Mensaje = "Error. " + ex.Message;
             messbox1.Tipo = "E";
             messbox1.showMess();
+        }
+    }
+    public void excelautomatico(string secuencial)
+
+    {
+        Datos.SqlService sql = new Datos.SqlService();
+
+        var data = sql.ExecuteSqlDataTable("SELECT concat(cod_prefijo, cod_sufijo) as Codigo_Barras FROM CODIGO WHERE COD_SECUENCIAL > " + secuencial);
+
+        using (var package = new ExcelPackage())
+        {
+            // Agregar una hoja de trabajo
+            var worksheet = package.Workbook.Worksheets.Add("Datos");
+
+            worksheet.Cells["A1"].Value = "Codigo_Barras";
+            // Llenar la hoja de trabajo con los datos
+            for (int row = 2; row <= data.Rows.Count+1; row++)
+            {
+                worksheet.Cells[row, 1].Value = data.Rows[row - 2]["Codigo_Barras"];
+            }
+
+            // Generar un nombre de archivo único
+            var fileName = "CodigosGenerados.xlsx";
+
+            // Configurar el tipo de respuesta para la descarga
+            Response.Clear();
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AddHeader("content-disposition", "attachment; filename=" + fileName);
+
+            // Escribir el archivo al flujo de respuesta
+            Response.BinaryWrite(package.GetAsByteArray());
+            Response.End();
         }
     }
 }

@@ -63,7 +63,7 @@
 
     <siteMapNode title="Inventarios" roles="*" >
 
-      <siteMapNode url="~/Site/Inventarios/AsignarPpc.aspx" title="Filtrar y Asignar Items"/>
+      <!--<siteMapNode url="~/Site/Inventarios/AsignarPpc.aspx" title="Filtrar y Asignar Items"/>-->
       <siteMapNode url="~/Site/Inventarios/ReporteInv.aspx" title="Reporte Inventario Movil"/>
       <siteMapNode url="~/Site/Inventarios/ExplorerPdf.aspx" title="Actas Generadas"/>
     </siteMapNode>
