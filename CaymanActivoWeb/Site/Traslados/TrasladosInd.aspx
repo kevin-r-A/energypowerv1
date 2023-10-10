@@ -838,6 +838,18 @@
                     </h5>
                 </td>
             </tr>
+             <tr>
+                        <td height="18">
+                            Valor Razonable:
+                        </h5>
+                        </td>
+                        <td>
+                            <h5>
+                        <asp:Label ID="lblvalorrazonable" runat="server"></asp:Label>
+                    </h5>
+                            
+                        </td>
+                    </tr>
         </table>
     </div>
 </td>

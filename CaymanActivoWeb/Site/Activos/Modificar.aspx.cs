@@ -674,6 +674,7 @@ public partial class Site_Activos_Modificar : System.Web.UI.Page
             datefechacompra.SelectedDate = act.ACT_FECHACOMPRA;
             //lblvalorcompra.Text = "$ " + act.ACT_VALORCOMPRA.ToString().Replace(',', '.') + " USD"; //SI NO SE REQUIERE MODIFICAR VALOR DE COMPRA
             lblvalorcompra.Text = act.ACT_VALORCOMPRA.ToString().Replace(',', '.');
+            lblvalorrazonable.Text = act.ACT_VALORRAZONABLE.ToString().Replace(',', '.');
             Session["_valorcompra"] = act.ACT_VALORCOMPRA.ToString().Replace(',', '.');
             lblvidautil.Text = act.ACT_VIDAUTIL.ToString() + " Meses";
 
@@ -1099,6 +1100,7 @@ public partial class Site_Activos_Modificar : System.Web.UI.Page
                                         return;
                                     }
                                 }
+                                act.ACT_VALORRAZONABLE = decimal.Parse(lblvalorrazonable.Text.Replace(",", "."), System.Globalization.NumberStyles.Currency, new System.Globalization.CultureInfo("en-US"));
 
                                 if (ddgarantia.SelectedValue == "SI")
                                 {

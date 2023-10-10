@@ -57,6 +57,7 @@ namespace Logica
         private Int64 _aCT_NUMFACT;
         private DateTime _aCT_FECHACOMPRA;
         private decimal _aCT_VALORCOMPRA;
+        private decimal _aCT_VALORRAZONABLE;
         private int _aCT_ANIO;
         private int _aCT_VIDAUTIL;
         private int _aCT_VIDAUTILNIIF;
@@ -284,6 +285,8 @@ namespace Logica
                 if (!reader.IsDBNull(83)) _aCT_VALORASEGURADO = reader.GetDecimal(83);
                 if (!reader.IsDBNull(84)) ACT_FECHAULTDEPRE = reader.GetDateTime(84);
                 if (!reader.IsDBNull(85)) ACT_DEPREACUMULADA = reader.GetDecimal(85);
+                if (!reader.IsDBNull(65)) _aCT_VALORRAZONABLE = reader.GetDecimal(65);
+
             }
         }
 
@@ -596,7 +599,11 @@ namespace Logica
             get { return _aCT_VALORCOMPRA; }
             set { _aCT_VALORCOMPRA = value; }
         }
-
+        public decimal ACT_VALORRAZONABLE
+        {
+            get { return _aCT_VALORRAZONABLE; }
+            set { _aCT_VALORRAZONABLE = value; }
+        }
         public int ACT_ANIO
         {
             get { return _aCT_ANIO; }
@@ -812,6 +819,8 @@ namespace Logica
                 }
 
                 sql.AddParameter("@ACT_VALORCOMPRA", SqlDbType.Decimal, ACT_VALORCOMPRA);
+                sql.AddParameter("@ACT_VALORRAZONABLE", SqlDbType.Decimal, ACT_VALORRAZONABLE);
+
 
                 if (ACT_ANIO == -1)
                     sql.AddParameter("@ACT_ANIO", SqlDbType.Int, System.Data.SqlTypes.SqlInt32.Null);
@@ -974,6 +983,7 @@ namespace Logica
                 sql.AddParameter("@ACT_NUMFACT", SqlDbType.BigInt, ACT_NUMFACT);
                 sql.AddParameter("@ACT_FECHACOMPRA", SqlDbType.SmallDateTime, ACT_FECHACOMPRA);
                 sql.AddParameter("@ACT_VALORCOMPRA", SqlDbType.Decimal, ACT_VALORCOMPRA);
+                sql.AddParameter("@ACT_VALORRAZONABLE", SqlDbType.Decimal, ACT_VALORRAZONABLE);
 
                 if (ACT_ANIO == -1)
                     sql.AddParameter("@ACT_ANIO", SqlDbType.Int, System.Data.SqlTypes.SqlInt32.Null);

@@ -995,6 +995,22 @@
                             </div>
                         </td>
                     </tr>
+                    <tr>
+                        <td height="18">
+                            Valor Razonable:
+                        </h5>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <telerik:RadNumericTextBox ID="lblvalorrazonable" runat="server" Culture="en-US"
+                                                           EmptyMessage="Ingrese Valor" MaxValue="999999999" MinValue="0.00"
+                                                           Type="Currency" Width="119px" Enabled="False">
+                                    <NumberFormat GroupSeparator=""/>
+                                    <EmptyMessageStyle Font-Italic="True"/>
+                                </telerik:RadNumericTextBox>
+                            </div>
+                        </td>
+                    </tr>
                 </table>
                 <asp:Panel
                     ID="panNiif" runat="server">

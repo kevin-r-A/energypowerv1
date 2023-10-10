@@ -487,6 +487,7 @@ public partial class TrasladosInd : System.Web.UI.Page
 
                 lblfechacompra.Text = act.ACT_FECHACOMPRA.ToShortDateString();
                 lblvalorcompra.Text = "$ " + act.ACT_VALORCOMPRA.ToString("N") + " USD";
+                lblvalorrazonable.Text = "$ " + act.ACT_VALORRAZONABLE.ToString("N") + " USD";
                 lblvidautil.Text = act.ACT_VIDAUTIL.ToString();
                 lblvuniif.Text = act.ACT_VIDAUTILNIIF.ToString();
                 lblvalresniif.Text = "$ " + act.ACT_VALORRESIDUALNIIF.ToString("N") + " USD";
