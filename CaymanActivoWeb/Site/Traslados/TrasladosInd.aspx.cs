@@ -508,7 +508,10 @@ public partial class TrasladosInd : System.Web.UI.Page
                     lblobservaciones.Text = "No registra ninguna Observación...";
                 else
                     lblobservaciones.Text = act.ACT_OBSERVACIONES;
-
+                if (act.ACT_DESCRIPCIONLARGA.Length == 0)
+                    lbldescripcionlarga.Text = "No registra ninguna Observación Larga...";
+                else
+                    lbldescripcionlarga.Text = act.ACT_DESCRIPCIONLARGA;
                 upAsiento.Update();
                 //CARGO CARACTERISTICAS, VALORES Y UNIDADES
                 DataSet dscar;

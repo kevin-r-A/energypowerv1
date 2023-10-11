@@ -227,11 +227,11 @@ public partial class Site_Activos_ImprimirCod : System.Web.UI.Page
             }
             Logica.HELPER.insHCodImpreso(Membership.GetUser().UserName.ToLower(), DropDownList1.SelectedItem.ToString(), cod1, cod2, nveces.ToString());
         }
-
+            
             excelautomatico(txtultimocod.Text);
             cargarHistorial();
-        txtultimocod.Text = Logica.HELPER.getUltCodimpr();
-            
+            txtultimocod.Text = Logica.HELPER.getUltCodimpr();
+
 
         }
         catch (Exception ex)
@@ -272,7 +272,7 @@ public partial class Site_Activos_ImprimirCod : System.Web.UI.Page
 
             // Escribir el archivo al flujo de respuesta
             Response.BinaryWrite(package.GetAsByteArray());
-            Response.End();
+            Response.Flush();
         }
     }
 }

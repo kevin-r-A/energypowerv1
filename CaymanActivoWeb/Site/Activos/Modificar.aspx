@@ -345,7 +345,7 @@
 
                             </td>
                             <td>
-                                <asp:ImageButton ID="ibpdf1" runat="server" Height="30px" Visible="False"
+                                <asp:ImageButton ID="ibpdf1" runat="server" Height="30px"
                                                  ImageUrl="~/Img/pdf1.png" OnClick="ibpdf1_Click" Width="112px"/>
                             </td>
                             <td width="10">&nbsp;</td>
@@ -1378,6 +1378,39 @@
                             <tr>
                                 <td>
                                     <asp:TextBox ID="txtObservaciones" runat="server" CssClass="form-control"
+                                                 Rows="7" TextMode="MultiLine" Width="99%" Font-Names="Arial" Font-Size="9pt">
+                                    </asp:TextBox>
+                                </td>
+                            </tr>
+                            
+                        </table>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+        </td>
+    </tr>
+</table>
+    <table
+    cellpadding="0" cellspacing="0" class="style1">
+    <tr>
+<td align="left" class="ba13" style="font-weight: bold; font-size: 16px;" height="30"><strong> Descripción Larga</strong></td>
+
+    </tr>
+    <tr>
+        <td class="aatl">
+            <div
+                class="divv">
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server"
+                                 UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <table cellpadding="2" cellspacing="0"
+                               class="style1">
+                       </td>
+                            </tr>
+                            <tr>
+                                <td>
+            
+                                    <asp:TextBox ID="txtDescripcionLarga" runat="server" CssClass="form-control"
                                                  Rows="7" TextMode="MultiLine" Width="99%" Font-Names="Arial" Font-Size="9pt">
                                     </asp:TextBox>
                                 </td>

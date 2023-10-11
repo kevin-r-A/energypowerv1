@@ -86,7 +86,8 @@ namespace Logica
         private decimal _aCT_VALORASEGURADO;
         public DateTime? ACT_FECHAULTDEPRE { get; set; }
         public  decimal ACT_DEPREACUMULADA { get; set; }
-        
+        private string _aCT_DESCRIPCIONLARGA = String.Empty;
+
         /*Propieades Asiento Ingreso*/
         public string CuentaOrigen { get; set; }
         public string CuentaDestino { get; set; }
@@ -286,6 +287,7 @@ namespace Logica
                 if (!reader.IsDBNull(84)) ACT_FECHAULTDEPRE = reader.GetDateTime(84);
                 if (!reader.IsDBNull(85)) ACT_DEPREACUMULADA = reader.GetDecimal(85);
                 if (!reader.IsDBNull(65)) _aCT_VALORRAZONABLE = reader.GetDecimal(65);
+                if (!reader.IsDBNull(78)) _aCT_DESCRIPCIONLARGA = reader.GetString(78);
 
             }
         }
@@ -645,7 +647,12 @@ namespace Logica
             get { return _aCT_OBSERVACIONES; }
             set { _aCT_OBSERVACIONES = value; }
         }
-
+        
+              public string ACT_DESCRIPCIONLARGA
+        {
+            get { return _aCT_DESCRIPCIONLARGA; }
+            set { _aCT_DESCRIPCIONLARGA = value; }
+        }
         public bool ACT_TRANSFEROK
         {
             get { return _aCT_TRANSFEROK; }
@@ -999,6 +1006,7 @@ namespace Logica
                     sql.AddParameter("@ACT_FECHAGARANTIAVENCE", SqlDbType.SmallDateTime, ACT_FECHAGARANTIAVENCE);
 
                 sql.AddParameter("@ACT_OBSERVACIONES", SqlDbType.VarChar, ACT_OBSERVACIONES);
+                sql.AddParameter("@ACT_DESCRIPCIONLARGA", SqlDbType.VarChar, ACT_DESCRIPCIONLARGA);
 
                 sql.AddParameter("@ACT_DEPRECIADOSRI", SqlDbType.Bit, ACT_DEPRECIADOSRI);
                 sql.AddParameter("@ACT_DEPRECIADONIIF", SqlDbType.Bit, ACT_DEPRECIADONIIF);

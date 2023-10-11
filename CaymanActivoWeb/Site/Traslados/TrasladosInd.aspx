@@ -46,6 +46,12 @@
         .auto-style15 {
             width: 173px;
         }
+        .labeldes {
+
+    font-weight: normal;
+    font-size: 14px;   
+}
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="cph1">
@@ -903,6 +909,16 @@
             </div>
         </td>
     </tr>
+   <tr>
+    <td align="left" class="ba13" style="font-weight: bold; font-size: 16px;" height="30">
+        <strong>Descripción Larga</strong>
+        <div class="divv">
+            <asp:Label ID="lbldescripcionlarga" runat="server" class="labeldes"></asp:Label>
+        </div>
+    </td>
+</tr>
+
+
 </table>
 <table cellpadding="0" cellspacing="0"
        class="style1">

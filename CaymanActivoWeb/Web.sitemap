@@ -23,7 +23,7 @@
         <siteMapNode url="~/Site/ZEst/ZEstrucomp.aspx" title="Estructura y Componente"/>
         <siteMapNode url="~/Site/ZPro/ZProveedor.aspx" title="Proveedor"/>
         <siteMapNode url="~/Site/ZTSeg/ZTSeg.aspx" title="Seguros"/>
-		  <siteMapNode url="~/Site/ZApr/ZAprobacion.aspx" title="Aprobaciones"/>
+		<!--  <siteMapNode url="~/Site/ZApr/ZAprobacion.aspx" title="Aprobaciones"/>-->
       </siteMapNode>
 
       <siteMapNode title="Reportes" roles="*" >

@@ -756,6 +756,7 @@ public partial class Site_Activos_Modificar : System.Web.UI.Page
             }
             
             txtObservaciones.Text = act.ACT_OBSERVACIONES;
+            txtDescripcionLarga.Text = act.ACT_DESCRIPCIONLARGA;
 
             loadCar(act.GRU_ID1.ToString());
 
@@ -1114,7 +1115,7 @@ public partial class Site_Activos_Modificar : System.Web.UI.Page
                                 }
 
                                 act.ACT_OBSERVACIONES = txtObservaciones.Text.Trim();
-
+                                act.ACT_DESCRIPCIONLARGA = txtDescripcionLarga.Text.Trim();
                                 if (ddSeguro.SelectedItem.Text == "SI")
                                 {
                                     act.ACT_SEGURO = "S";
