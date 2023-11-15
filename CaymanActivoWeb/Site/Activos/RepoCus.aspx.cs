@@ -360,7 +360,7 @@ public partial class RepoCus : System.Web.UI.Page
                     if (grid.AutoGenerateColumns)
                     {
                         string s = grid.Rows[rowNo].Cells[columnNo].Text.Trim();
-
+                        if (s == "&nbsp;") s = "";
 
                         if (s != "&nbsp;")
                         {
